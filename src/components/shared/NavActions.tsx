@@ -1,13 +1,8 @@
 "use client";
-
 import { useAppSelector } from "@/redux/store";
 import { Search, User } from "lucide-react";
 
-/**
- * NavActions Component
- * Handles the right-side actions of the navbar including Search, User Profile, and Cart.
- * Integrates with Redux to display the live cart item count.
- */
+// NavActions component
 const NavActions = () => {
   // Get total quantity of items in the cart from Redux store
   const totalQuantity = useAppSelector((state) => state.cart.totalQuantity);
