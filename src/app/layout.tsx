@@ -3,18 +3,21 @@ import type { Metadata, Viewport } from "next";
 import { Rubik } from "next/font/google";
 import "./globals.css";
 
+// Rubik font
 const rubik = Rubik({
   subsets: ["latin"],
   variable: "--font-rubik",
   weight: ["400", "500", "600", "700", "800", "900"],
 });
 
+// Viewport
 export const viewport: Viewport = {
   width: "device-width",
   initialScale: 1,
   themeColor: "#ffffff",
 };
 
+// Metadata
 export const metadata: Metadata = {
   title: {
     default: "Kicks | The Ultimate Sneaker Store",
@@ -55,7 +58,7 @@ export const metadata: Metadata = {
   openGraph: {
     type: "website",
     locale: "en_US",
-    url: "https://kicks-store.vercel.app", // Replace with actual URL
+    url: "https://kicks.vercel.app",
     siteName: "Kicks Store",
     title: "Kicks | The Ultimate Sneaker Store",
     description:
@@ -75,13 +78,14 @@ export const metadata: Metadata = {
     description:
       "Discover the latest collection of premium sneakers at Kicks. Shop top brands, exclusive drops, and timeless classics.",
     images: ["/og-image.jpg"],
-    creator: "@rakibislam2233", // Replace with actual handle if available
+    creator: "@rakibislam2233",
   },
   alternates: {
-    canonical: "https://kicks-store.vercel.app",
+    canonical: "https://kicks.vercel.app",
   },
 };
 
+// Root Layout
 export default function RootLayout({
   children,
 }: Readonly<{
