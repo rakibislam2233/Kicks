@@ -16,7 +16,7 @@ export const Navbar = () => {
     <div className="w-full container mx-auto px-4 pt-8">
       <nav className="flex h-24 items-center justify-between rounded-[24px] bg-white p-8">
         {/* Left Side: Navigation Links */}
-        <div className="flex items-center gap-8">
+        <div className="flex items-center gap-10">
           {navLinks?.map((link) => (
             <NavLink key={link.label} {...link} />
           ))}
