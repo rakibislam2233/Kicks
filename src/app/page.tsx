@@ -1,12 +1,13 @@
 import HeroSection from "@/components/pages/home/HeroSection";
+import NewDrops from "@/components/pages/home/NewDrops";
 import { Navbar } from "@/components/shared/Navbar";
-import React from "react";
 
 const Home = () => {
   return (
     <main>
       <Navbar />
       <HeroSection />
+      <NewDrops />
     </main>
   );
 };
