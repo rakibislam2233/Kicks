@@ -43,7 +43,7 @@ const HeroSection = () => {
           <p className="text-white text-[10px] sm:text-sm md:text-2xl mb-4 md:mb-8 max-w-[200px] md:max-w-[450px] leading-tight md:leading-snug opacity-90">
             Nike introducing the new air max for everyone&apos;s comfort
           </p>
-          <Button className="w-[110px] md:w-[138px] h-[36px] md:h-[48px] bg-[#4a69e2] hover:bg-blue-600 text-white font-semibold uppercase rounded-[8px] text-[10px] md:text-sm cursor-pointer tracking-wider transition-colors">
+          <Button className="w-[110px] md:w-[138px] h-[36px] md:h-[48px] bg-primary hover:bg-primary/90 text-white font-semibold uppercase rounded-[8px] text-[10px] md:text-sm cursor-pointer tracking-wider transition-colors">
             SHOP NOW
           </Button>
         </div>
