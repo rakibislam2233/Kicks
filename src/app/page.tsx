@@ -1,3 +1,4 @@
+import Categories from "@/components/pages/home/Categories";
 import HeroSection from "@/components/pages/home/HeroSection";
 import NewDrops from "@/components/pages/home/NewDrops";
 import { Navbar } from "@/components/shared/Navbar";
@@ -8,6 +9,7 @@ const Home = () => {
       <Navbar />
       <HeroSection />
       <NewDrops />
+      <Categories />
     </main>
   );
 };
