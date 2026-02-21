@@ -16,7 +16,7 @@ const ProductCard = ({ product }: IProductCardProps) => {
     <div className="w-full cursor-pointer space-y-4">
       {/* Image Container */}
       <div className="w-full max-w-[318px] h-full max-h-[350px] relative aspect-square mb-4 bg-white rounded-[28px] overflow-hidden p-[8px]">
-        <div className="relative w-full h-full bg-[#ECEEF0] rounded-[24px]">
+        <div className="relative w-full h-full max-h-[334px] bg-[#ECEEF0] rounded-[24px]">
           {product.isNew && (
             <div className="absolute top-0 left-0 bg-primary text-white text-[12px] font-bold w-[58px] h-[38px] rounded-tl-[24px] rounded-br-[24px] z-10 uppercase flex items-center justify-center py-3 px-4">
               New
