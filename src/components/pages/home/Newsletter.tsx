@@ -1,0 +1,63 @@
+"use client";
+import { useState } from "react";
+import Image from "next/image";
+import kicksLogo from "@/assets/logo/logo-white.png";
+import { Plus } from "lucide-react";
+
+const Newsletter = () => {
+  const [email, setEmail] = useState("");
+
+  const handleSubmit = (e: React.FormEvent) => {
+    e.preventDefault();
+    setEmail("");
+  };
+
+  return (
+    <div className="w-full container bg-primary rounded-t-[32px] mx-auto px-10 md:px-[72px] py-14 md:py-16">
+      <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+        {/* Left: Text Content */}
+        <div className="w-full">
+          <h2 className="text-3xl sm:text-4xl md:text-[48px] font-semibold text-white uppercase leading-tight mb-3">
+            JOIN OUR KICKSPLUS
+            <br />
+            CLUB &amp; GET 15% OFF
+          </h2>
+          <p className="text-white/80 text-base md:text-[20px] font-semibold font-open-sans">
+            Sign up for free! Join the community.
+          </p>
+
+          {/* Email Form */}
+          <form
+            onSubmit={handleSubmit}
+            className="mt-8 flex items-center gap-1 max-w-md"
+          >
+            <input
+              type="email"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
+              placeholder="Email address"
+              required
+              className="flex-1 h-[48px] px-4 text-sm bg-transparent border border-white text-white placeholder:text-[#9ca3af] outline-none rounded-md"
+            />
+            <button
+              type="submit"
+              className="w-[102px] h-[48px] bg-[#232321] text-white text-sm font-semibold uppercase tracking-wider rounded-[8px] hover:bg-black transition-colors cursor-pointer whitespace-nowrap"
+            >
+              SUBMIT
+            </button>
+          </form>
+        </div>
+
+        {/* Right: Big KICKS Logo */}
+        <div className="w-full flex justify-center items-center relative">
+          <Image src={kicksLogo} alt="Kicks Logo" width={351} height={880} />
+          <div className="absolute bg-[#FFA52F] rounded-full -top-12 right-20 p-2">
+            <Plus size={26} className="text-primary" strokeWidth={3} />
+          </div>
+        </div>
+      </div>
+    </div>
+  );
+};
+
+export default Newsletter;

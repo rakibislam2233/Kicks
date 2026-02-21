@@ -38,7 +38,7 @@ const reviews = [
 
 const Reviews = () => {
   return (
-    <section className="w-full bg-[#F5F5F3] py-12 md:py-[128px]">
+    <section className="w-full py-12 md:py-[128px]">
       <div className="container mx-auto px-4">
         {/* Section Header */}
         <div className="flex items-center justify-between mb-8 md:mb-12">
