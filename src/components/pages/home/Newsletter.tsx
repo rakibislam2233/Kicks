@@ -13,7 +13,7 @@ const Newsletter = () => {
   };
 
   return (
-    <div className="w-full container bg-primary rounded-t-[32px] mx-auto px-10 md:px-[72px] py-14 md:py-16">
+    <div className="w-full container bg-primary rounded-t-[32px] mx-auto px-10 md:px-[72px] pt-14 md:pt-16 pb-14 md:pb-24">
       <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
         {/* Left: Text Content */}
         <div className="w-full">
@@ -51,7 +51,7 @@ const Newsletter = () => {
         {/* Right: Big KICKS Logo */}
         <div className="w-full flex justify-center items-center relative">
           <Image src={kicksLogo} alt="Kicks Logo" width={351} height={880} />
-          <div className="absolute bg-[#FFA52F] rounded-full -top-12 right-20 p-2">
+          <div className="absolute bg-[#FFA52F] rounded-full -top-11 right-20 p-1.5">
             <Plus size={26} className="text-primary" strokeWidth={3} />
           </div>
         </div>

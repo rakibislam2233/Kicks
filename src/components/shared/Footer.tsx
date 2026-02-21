@@ -1,4 +1,6 @@
+import logo from "@/assets/logo/footer-logo.png";
 import { Facebook, Instagram, Twitter } from "lucide-react";
+import Image from "next/image";
 import Link from "next/link";
 
 // TikTok icon (not in lucide-react)
@@ -38,14 +40,14 @@ const socialLinks = [
 
 const Footer = () => {
   return (
-    <footer className="w-full bg-[#232321] overflow-hidden">
-      {/* Main Footer Content */}
-      <div className="container mx-auto px-4 py-12 md:py-16">
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-10 md:gap-12">
-          {/* About Us */}
-          <div className="lg:col-span-1">
-            <h3 className="text-primary text-xl font-bold mb-4">About us</h3>
-            <p className="text-white/70 text-sm leading-relaxed">
+    <footer>
+      <div className="w-full max-h-[519px] container mx-auto rounded-[48px] bg-[#232321] -mt-12 p-5 md:p-10 overflow-hidden">
+        {/* Main Footer Content */}
+        <div className="flex flex-col md:flex-row gap-8 md:gap-12">
+          {/* About Us — fixed 446px width */}
+          <div className="w-full md:w-[446px] shrink-0">
+            <h3 className="text-[#FFA52F] text-[36px] font-semibold mb-4">About us</h3>
+            <p className="text-white/70 text-[20px] font-semibold leading-relaxed">
               We are the biggest hyperstore in the universe. We got you all
               cover with our{" "}
               <span className="text-white underline cursor-pointer">
@@ -55,63 +57,73 @@ const Footer = () => {
             </p>
           </div>
 
-          {/* Categories */}
-          <div>
-            <h3 className="text-white text-xl font-bold mb-4">Categories</h3>
-            <ul className="flex flex-col gap-2">
-              {footerLinks.categories.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-white/70 text-sm hover:text-primary transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+          {/* Right columns — Categories, Company, Follow Us */}
+          <div className="flex flex-1 flex-col sm:flex-row gap-8 sm:gap-12">
+            {/* Categories */}
+            <div className="flex-1">
+              <h3 className="text-[#FFA52F] text-[24px] font-semibold mb-4">Categories</h3>
+              <ul className="flex flex-col gap-2">
+                {footerLinks.categories.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-white/70 text-sm hover:text-primary transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Company */}
-          <div>
-            <h3 className="text-white text-xl font-bold mb-4">Company</h3>
-            <ul className="flex flex-col gap-2">
-              {footerLinks.company.map((link) => (
-                <li key={link.label}>
-                  <Link
-                    href={link.href}
-                    className="text-white/70 text-sm hover:text-primary transition-colors"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-            </ul>
-          </div>
+            {/* Company */}
+            <div className="flex-1">
+              <h3 className="text-[#FFA52F] text-[24px] font-semibold mb-4">Company</h3>
+              <ul className="flex flex-col gap-2">
+                {footerLinks.company.map((link) => (
+                  <li key={link.label}>
+                    <Link
+                      href={link.href}
+                      className="text-white/70 text-sm hover:text-primary transition-colors"
+                    >
+                      {link.label}
+                    </Link>
+                  </li>
+                ))}
+              </ul>
+            </div>
 
-          {/* Follow Us */}
-          <div>
-            <h3 className="text-white text-xl font-bold mb-4">Follow us</h3>
-            <div className="flex items-center gap-4">
-              {socialLinks.map((social) => (
-                <Link
-                  key={social.label}
-                  href={social.href}
-                  aria-label={social.label}
-                  className="text-white/70 hover:text-primary transition-colors"
-                >
-                  {social.icon}
-                </Link>
-              ))}
+            {/* Follow Us */}
+            <div className="flex-1">
+              <h3 className="text-[#FFA52F] text-[24px] font-semibold mb-4">Follow us</h3>
+              <div className="flex items-center gap-4">
+                {socialLinks.map((social) => (
+                  <Link
+                    key={social.label}
+                    href={social.href}
+                    aria-label={social.label}
+                    className="text-white/70 hover:text-primary transition-colors"
+                  >
+                    {social.icon}
+                  </Link>
+                ))}
+              </div>
             </div>
           </div>
         </div>
+        <div className="w-full overflow-hidden mt-12">
+          <Image
+            src={logo}
+            alt="Kicks Logo"
+            width={1262}
+            height={314}
+            className="w-full h-auto object-cover"
+          />
+        </div>
       </div>
-
-      {/* Big Decorative KICKS Watermark */}
-      <div className="w-full overflow-hidden -mb-4 md:-mb-6 lg:-mb-8">
-        <p className="text-[18vw] font-black text-white/10 uppercase leading-none text-center tracking-tighter select-none">
-          KICKS
+      <div className="container mx-auto px-4 py-6 text-center">
+        <p className="text-[#232321] text-base leading-relaxed">
+          © All rights reserved
         </p>
       </div>
     </footer>
