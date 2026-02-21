@@ -38,29 +38,22 @@ const products = [
 
 const NewDrops = () => {
   return (
-    <section className="w-full container mx-auto px-4 pt-12 md:pt-[90px] pb-20 md:pb-[128px]">
+    <section className="w-full container mx-auto px-4 pt-12 xl:pt-[90px] pb-20 xl:pb-[128px]">
       {/* Section Header */}
-      <div className="flex items-end justify-between mb-8 md:mb-12">
-        <h2 className="text-4xl md:text-[74px] font-semibold leading-[0.9] text-[#232321] uppercase max-w-[600px]">
-          DON&apos;T MISS OUT <br /> NEW DROPS
+      <div className="flex items-center justify-between mb-8 xl:mb-12">
+        <h2 className="text-2xl sm:text-4xl xl:text-[74px] font-semibold leading-tight xl:leading-[0.9] text-[#232321] uppercase max-w-[200px] xl:max-w-[600px]">
+          DON&apos;T MISS OUT <br className="hidden xl:block" /> NEW DROPS
         </h2>
-        <Button className="hidden md:flex h-[48px] bg-primary text-white font-medium uppercase rounded-[8px] px-8 text-sm cursor-pointer tracking-wider hover:bg-primary/90 transition-colors">
+        <Button className="h-[36px] xl:h-[48px] bg-primary text-white font-medium uppercase rounded-[8px] px-4 xl:px-8 text-[10px] xl:text-sm cursor-pointer tracking-wider hover:bg-primary/90 transition-colors">
           SHOP NEW DROPS
         </Button>
       </div>
 
       {/* Products Grid */}
-      <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-4 gap-4">
+      <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
         {products.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
-      </div>
-
-      {/* Mobile-only CTA */}
-      <div className="mt-8 md:hidden">
-        <Button className="w-full h-[48px] bg-primary text-white font-semibold uppercase rounded-[8px] text-sm">
-          SHOP NEW DROPS
-        </Button>
       </div>
     </section>
   );

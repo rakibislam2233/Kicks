@@ -15,10 +15,10 @@ const ProductCard = ({ product }: IProductCardProps) => {
   return (
     <div className="w-full cursor-pointer space-y-4">
       {/* Image Container */}
-      <div className="w-full max-w-[318px] h-full max-h-[350px] relative aspect-square mb-4 bg-white rounded-[28px] overflow-hidden p-[8px]">
-        <div className="relative w-full h-full max-h-[334px] bg-[#ECEEF0] rounded-[24px]">
+      <div className="w-full relative aspect-square mb-4 bg-white rounded-[20px] xl:rounded-[28px] overflow-hidden p-[8px]">
+        <div className="relative w-full h-full bg-[#ECEEF0] rounded-[16px] xl:rounded-[24px]">
           {product.isNew && (
-            <div className="absolute top-0 left-0 bg-primary text-white text-[12px] font-bold w-[58px] h-[38px] rounded-tl-[24px] rounded-br-[24px] z-10 uppercase flex items-center justify-center py-3 px-4">
+            <div className="absolute top-0 left-0 bg-primary text-white text-[12px] font-bold w-[58px] h-[38px] rounded-tl-[16px] xl:rounded-tl-[24px] rounded-br-[16px] xl:rounded-br-[24px] z-10 uppercase flex items-center justify-center py-3 px-4">
               New
             </div>
           )}
@@ -26,18 +26,18 @@ const ProductCard = ({ product }: IProductCardProps) => {
             src={product.image}
             alt={product.name}
             fill
-            className="object-contain rounded-[24px]"
+            className="object-contain rounded-[16px] xl:rounded-[24px]"
           />
         </div>
       </div>
 
       {/* Product Info */}
       <div className="flex flex-col gap-4">
-        <h3 className="text-xl md:text-2xl font-semibold text-[#232321] leading-tight">
+        <h3 className="text-sm xl:text-2xl font-semibold text-[#232321] leading-tight">
           {product.name}
         </h3>
       </div>
-      <Button className="w-full h-[48px] bg-[#232321] text-white hover:bg-[#232321]/90 rounded-[8px] text-sm font-medium uppercase py-4 flex items-center justify-center gap-1 cursor-pointer">
+      <Button className="w-full h-[36px] xl:h-[48px] bg-[#232321] text-white hover:bg-[#232321]/90 rounded-[4px] xl:rounded-[8px] text-[10px] xl:text-sm font-medium uppercase py-2 xl:py-4 flex items-center justify-center gap-1 cursor-pointer">
         VIEW PRODUCT - <span className="text-[#FFA52F]">${product.price}</span>
       </Button>
     </div>
