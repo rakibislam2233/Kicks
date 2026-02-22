@@ -77,8 +77,8 @@ const Categories = () => {
               className={`w-[40px] h-[40px] rounded-[4px] xl:rounded-[8px] border flex items-center justify-center transition-colors
                 ${
                   isPrevDisabled
-                    ? "bg-[#232321] border-[#858582] text-white cursor-not-allowed opacity-50"
-                    : "border-white bg-[#858582] text-[#232321] cursor-pointer"
+                    ? "bg-[#E7E7E3] border-[#E7E7E3] text-black cursor-not-allowed opacity-50"
+                    : "bg-white border-white text-[#232321] cursor-pointer"
                 }`}
             >
               <ChevronLeft size={16} />
@@ -87,11 +87,11 @@ const Categories = () => {
               onClick={handleNext}
               disabled={isNextDisabled}
               className={`w-[40px] h-[40px] rounded-[4px] xl:rounded-[8px] border flex items-center justify-center transition-colors
-                ${
-                  isNextDisabled
-                    ? "bg-[#232321] border-[#858582] text-white cursor-not-allowed opacity-50"
-                    : "border-white bg-white text-[#232321] cursor-pointer"
-                }`}
+                 ${
+                   isNextDisabled
+                     ? "bg-[#E7E7E3] border-[#E7E7E3] text-black cursor-not-allowed opacity-50"
+                     : "bg-white border-white text-[#232321] cursor-pointer"
+                 }`}
             >
               <ChevronRight size={16} />
             </button>
