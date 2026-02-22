@@ -15,8 +15,8 @@ const ProductCard = ({ product }: IProductCardProps) => {
   return (
     <div className="w-full cursor-pointer space-y-4">
       {/* Image Container */}
-      <div className="w-full relative aspect-square mb-4 bg-white rounded-[20px] xl:rounded-[28px] overflow-hidden p-[8px]">
-        <div className="relative w-full h-full bg-[#ECEEF0] rounded-[16px] xl:rounded-[24px]">
+      <div className="w-full h-[250px] md:h-[350px] relative mb-4 bg-white rounded-[20px] xl:rounded-[28px] overflow-hidden p-[8px]">
+        <div className="relative w-full h-[242px] md:h-[334px] bg-[#ECEEF0] rounded-[16px] xl:rounded-[24px]">
           {product.isNew && (
             <div className="absolute top-0 left-0 bg-primary text-white text-[12px] font-bold w-[58px] h-[38px] rounded-tl-[16px] xl:rounded-tl-[24px] rounded-br-[16px] xl:rounded-br-[24px] z-10 uppercase flex items-center justify-center py-3 px-4">
               New
