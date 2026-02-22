@@ -1,4 +1,3 @@
-
 "use client";
 import ProductCard from "@/components/common/ProductCard";
 import { motion } from "framer-motion";
@@ -57,26 +56,29 @@ const products = [
 ];
 
 const RecommandProducts = () => {
-  const [currentIndex, setCurrentIndex] = useState<number>(0);
-  const [itemsToShow, setItemsToShow] = useState<number>(5);
+  const [currentPage, setCurrentPage] = useState(0);
   const [cardWidth, setCardWidth] = useState(318);
+  const [cols, setCols] = useState(4); // desktop: 4 col, mobile: 2 col
+  const [rows, setRows] = useState(1); // desktop: 1 row, mobile: 2 row
   const containerRef = useRef<HTMLDivElement>(null);
+
+  const itemsPerPage = cols * rows; // desktop: 4x1=4, mobile: 2x2=4
 
   useEffect(() => {
     const updateLayout = () => {
-      if (containerRef.current) {
-        const containerWidth = containerRef.current.offsetWidth;
-        if (window.innerWidth < 640) {
-          setItemsToShow(1);
-          setCardWidth(containerWidth);
-        } else if (window.innerWidth < 1024) {
-          setItemsToShow(2);
-          setCardWidth((containerWidth - 16) / 2);
-        } else {
-          setItemsToShow(4);
-          setCardWidth((containerWidth - 16 * 3) / 4);
-        }
+      if (!containerRef.current) return;
+      const w = containerRef.current.offsetWidth;
+
+      if (window.innerWidth < 640) {
+        setCols(2);
+        setRows(2);
+        setCardWidth((w - 16) / 2);
+      } else {
+        setCols(4);
+        setRows(1);
+        setCardWidth((w - 16 * 3) / 4);
       }
+      setCurrentPage(0);
     };
 
     updateLayout();
@@ -84,17 +86,17 @@ const RecommandProducts = () => {
     return () => window.removeEventListener("resize", updateLayout);
   }, []);
 
-  const totalSlides = products.length;
-  // Maximum index we can slide to
-  const maxIndex = Math.max(0, totalSlides - itemsToShow);
+  const totalPages = Math.ceil(products.length / itemsPerPage);
 
-  const nextSlide = () => {
-    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
-  };
+  const nextSlide = () => setCurrentPage((p) => (p + 1) % totalPages);
+  const prevSlide = () =>
+    setCurrentPage((p) => (p - 1 + totalPages) % totalPages);
 
-  const prevSlide = () => {
-    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
-  };
+  // Current page এর products
+  const currentProducts = products.slice(
+    currentPage * itemsPerPage,
+    (currentPage + 1) * itemsPerPage,
+  );
 
   return (
     <section className="w-full pt-12 xl:pt-[128px] pb-12 xl:pb-16">
@@ -118,41 +120,34 @@ const RecommandProducts = () => {
         </div>
       </div>
 
-      <div className="overflow-hidden" ref={containerRef}>
+      <div ref={containerRef}>
         <motion.div
-          className="flex gap-4"
-          animate={{
-            x: `-${currentIndex * (cardWidth + 16)}px`,
-          }}
-          transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
+          key={currentPage} // page change এ re-render
+          className="flex flex-wrap gap-4"
+          initial={{ opacity: 0, x: 50 }}
+          animate={{ opacity: 1, x: 0 }}
+          exit={{ opacity: 0, x: -50 }}
+          transition={{ duration: 0.4, ease: [0.32, 0.72, 0, 1] }}
         >
-          {products.map((product) => (
-            <div
-              key={product.id}
-              className="shrink-0"
-              style={{ width: `${cardWidth}px` }}
-            >
+          {currentProducts.map((product) => (
+            <div key={product.id} style={{ width: `${cardWidth}px` }}>
               <ProductCard product={product} />
             </div>
           ))}
         </motion.div>
       </div>
 
-      {/* Progress indicators */}
+      {/* Dots */}
       <div className="flex justify-center gap-2 mt-12">
-        {products.map((_, i) => {
-          // Only show dots for possible positions
-          if (i > maxIndex) return null;
-          return (
-            <button
-              key={i}
-              onClick={() => setCurrentIndex(i)}
-              className={`h-[4px] rounded-full transition-all duration-300 ${
-                currentIndex === i ? "bg-[#4A69E2] w-8" : "bg-[#232321]/10 w-4"
-              }`}
-            />
-          );
-        })}
+        {Array.from({ length: totalPages }).map((_, i) => (
+          <button
+            key={i}
+            onClick={() => setCurrentPage(i)}
+            className={`h-[4px] rounded-full transition-all duration-300 ${
+              currentPage === i ? "bg-[#4A69E2] w-8" : "bg-[#232321]/10 w-4"
+            }`}
+          />
+        ))}
       </div>
     </section>
   );
