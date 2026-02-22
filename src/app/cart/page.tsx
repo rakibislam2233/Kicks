@@ -3,8 +3,8 @@ import OrderSummary from "@/components/pages/cart/OrderSummary";
 
 const CartPage = () => {
   return (
-    <main className="min-h-screen bg-[#F6F6F6] pb-20 pt-8 xl:pt-16">
-      <div className="container mx-auto px-4 xl:px-[60px]">
+    <main className="min-h-screen pb-20 pt-8 xl:pt-16">
+      <div className="container mx-auto px-4">
         {/* Announcement Section */}
         <div className="mb-8 xl:mb-12">
           <h1 className="text-2xl xl:text-[48px] font-bold text-[#232321] uppercase leading-tight">
