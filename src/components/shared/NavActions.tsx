@@ -1,6 +1,7 @@
 "use client";
 import { useAppSelector } from "@/redux/store";
 import { Search } from "lucide-react";
+import Link from "next/link";
 import { HiUser } from "react-icons/hi";
 
 interface NavActionsProps {
@@ -27,9 +28,11 @@ const NavActions = ({ isMobile }: NavActionsProps) => {
       </button>
 
       {/* Cart Icon - Visible on all devices */}
-      <button className="relative flex size-8 md:size-10 items-center justify-center rounded-full bg-[#FFA52F] text-[12px] md:text-[14px] font-bold text-[#232321] transition-transform p-2 md:p-3">
-        {totalQuantity}
-      </button>
+      <Link href="/cart">
+        <button className="relative flex size-8 md:size-10 items-center justify-center rounded-full bg-[#FFA52F] text-[12px] md:text-[14px] font-bold text-[#232321] transition-transform p-2 md:p-3 cursor-pointer">
+          {totalQuantity}
+        </button>
+      </Link>
     </div>
   );
 };

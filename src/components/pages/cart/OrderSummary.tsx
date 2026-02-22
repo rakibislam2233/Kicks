@@ -1,8 +1,12 @@
 "use client";
-
 import { Button } from "@/components/ui/button";
+import { useAppSelector } from "@/redux/store";
 
 const OrderSummary = () => {
+  const { totalQuantity, totalAmount } = useAppSelector((state) => state.cart);
+  const deliveryFee = totalAmount > 0 ? 6.99 : 0;
+  const total = totalAmount + deliveryFee;
+
   return (
     <div className="w-full xl:w-[412px] space-y-8">
       <div className="space-y-6">
@@ -12,12 +16,14 @@ const OrderSummary = () => {
 
         <div className="space-y-4">
           <div className="flex justify-between items-center text-sm xl:text-[20px] font-semibold text-[#232321]">
-            <span className="uppercase">1 ITEM</span>
-            <span>$130.00</span>
+            <span className="uppercase">
+              {totalQuantity} ITEM{totalQuantity !== 1 ? "S" : ""}
+            </span>
+            <span>${totalAmount.toFixed(2)}</span>
           </div>
           <div className="flex justify-between items-center text-sm xl:text-[20px] font-semibold text-[#232321]">
             <span className="uppercase">Delivery</span>
-            <span>$6.99</span>
+            <span>${deliveryFee.toFixed(2)}</span>
           </div>
           <div className="flex justify-between items-center text-sm xl:text-[20px] font-semibold text-[#232321]">
             <span className="uppercase">Sales Tax</span>
@@ -25,11 +31,14 @@ const OrderSummary = () => {
           </div>
           <div className="flex justify-between items-center text-base xl:text-[24px] font-bold text-[#232321] pt-4">
             <span className="uppercase">Total</span>
-            <span>$136.99</span>
+            <span>${total.toFixed(2)}</span>
           </div>
         </div>
 
-        <Button className="w-full h-12 xl:h-[60px] bg-[#232321] text-white text-sm xl:text-[16px] font-bold uppercase rounded-lg xl:rounded-xl hover:bg-black cursor-pointer">
+        <Button
+          disabled={totalQuantity === 0}
+          className="w-full h-12 xl:h-[60px] bg-[#232321] text-white text-sm xl:text-[16px] font-bold uppercase rounded-lg xl:rounded-xl hover:bg-black cursor-pointer disabled:bg-[#232321]/50 disabled:cursor-not-allowed"
+        >
           Checkout
         </Button>
       </div>

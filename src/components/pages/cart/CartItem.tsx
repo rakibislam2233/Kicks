@@ -1,22 +1,57 @@
 "use client";
 
+import { removeFromCart, updateQuantity } from "@/redux/features/cartSlice";
+import { useAppDispatch } from "@/redux/store";
 import { ChevronDown, Heart, Trash2 } from "lucide-react";
 import Image from "next/image";
 
 interface CartItemProps {
   item: {
-    id: number;
+    id: string;
     name: string;
-    category: string;
-    description: string;
-    size: string;
-    quantity: number;
     price: number;
     image: string;
+    quantity: number;
+    size?: string | number;
+    color?: string;
+    category?: string;
+    description?: string;
   };
 }
 
 const CartItem = ({ item }: CartItemProps) => {
+  const dispatch = useAppDispatch();
+
+  const handleRemove = () => {
+    dispatch(
+      removeFromCart({ id: item.id, size: item.size, color: item.color }),
+    );
+  };
+
+  const handleQuantityIncrease = () => {
+    dispatch(
+      updateQuantity({
+        id: item.id,
+        quantity: item.quantity + 1,
+        size: item.size,
+        color: item.color,
+      }),
+    );
+  };
+
+  const handleQuantityDecrease = () => {
+    if (item.quantity > 1) {
+      dispatch(
+        updateQuantity({
+          id: item.id,
+          quantity: item.quantity - 1,
+          size: item.size,
+          color: item.color,
+        }),
+      );
+    }
+  };
+
   return (
     <div className="flex gap-4 xl:gap-6 py-6 border-b border-[#ECEEF0] last:border-0">
       {/* Product Image */}
@@ -36,15 +71,19 @@ const CartItem = ({ item }: CartItemProps) => {
             <h3 className="text-base xl:text-[24px] font-bold text-[#232321] uppercase leading-tight">
               {item.name}
             </h3>
-            <p className="text-sm xl:text-[16px] font-semibold text-[#232321]/60">
-              {item.category}
-            </p>
-            <p className="text-sm xl:text-[16px] font-semibold text-[#232321]/60">
-              {item.description}
-            </p>
+            {item.category && (
+              <p className="text-sm xl:text-[16px] font-semibold text-[#232321]/60">
+                {item.category}
+              </p>
+            )}
+            {item.description && (
+              <p className="text-sm xl:text-[16px] font-semibold text-[#232321]/60">
+                {item.description}
+              </p>
+            )}
           </div>
           <p className="text-base xl:text-[20px] font-bold text-primary">
-            ${item.price.toFixed(2)}
+            ${(item.price * item.quantity).toFixed(2)}
           </p>
         </div>
 
@@ -63,9 +102,23 @@ const CartItem = ({ item }: CartItemProps) => {
               <span className="text-sm xl:text-[16px] font-semibold text-[#232321]/60">
                 Quantity
               </span>
-              <button className="flex items-center gap-1 text-sm xl:text-[16px] font-bold text-[#232321] cursor-pointer">
-                {item.quantity} <ChevronDown size={16} />
-              </button>
+              <div className="flex items-center gap-3">
+                <button
+                  onClick={handleQuantityDecrease}
+                  className="w-6 h-6 flex items-center justify-center border border-[#232321]/20 rounded-md font-bold cursor-pointer"
+                >
+                  -
+                </button>
+                <span className="text-sm xl:text-[16px] font-bold text-[#232321]">
+                  {item.quantity}
+                </span>
+                <button
+                  onClick={handleQuantityIncrease}
+                  className="w-6 h-6 flex items-center justify-center border border-[#232321]/20 rounded-md font-bold cursor-pointer"
+                >
+                  +
+                </button>
+              </div>
             </div>
           </div>
 
@@ -73,7 +126,10 @@ const CartItem = ({ item }: CartItemProps) => {
             <button className="text-[#232321] hover:text-primary transition-colors cursor-pointer">
               <Heart size={24} />
             </button>
-            <button className="text-[#232321] hover:text-destructive transition-colors cursor-pointer">
+            <button
+              onClick={handleRemove}
+              className="text-[#232321] hover:text-destructive transition-colors cursor-pointer"
+            >
               <Trash2 size={24} />
             </button>
           </div>

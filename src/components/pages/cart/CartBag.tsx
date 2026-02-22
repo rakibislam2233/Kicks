@@ -1,22 +1,10 @@
 "use client";
-
+import { useAppSelector } from "@/redux/store";
 import CartItem from "./CartItem";
 
-const cartItems = [
-  {
-    id: 1,
-    name: "DROPSET TRAINER SHOES",
-    category: "Men's Road Running Shoes",
-    description: "Enamel Blue/ University White",
-    size: "10",
-    quantity: 1,
-    price: 130.0,
-    image:
-      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=1964&auto=format&fit=crop",
-  },
-];
-
 const CartBag = () => {
+  const cartItems = useAppSelector((state) => state.cart.items);
+
   return (
     <div className="w-full bg-white rounded-[24px] xl:rounded-[32px] p-6 xl:p-8">
       <div className="mb-6 xl:mb-8">
@@ -29,9 +17,20 @@ const CartBag = () => {
       </div>
 
       <div className="flex flex-col">
-        {cartItems.map((item) => (
-          <CartItem key={item.id} item={item} />
-        ))}
+        {cartItems.length > 0 ? (
+          cartItems.map((item, index) => (
+            <CartItem key={`${item.id}-${index}`} item={item} />
+          ))
+        ) : (
+          <div className="py-12 text-center flex flex-col items-center gap-4">
+            <p className="text-xl font-bold text-[#232321]">
+              Your bag is empty
+            </p>
+            <p className="text-[#232321]/60">
+              When you add items to your bag, they&apos;ll appear here.
+            </p>
+          </div>
+        )}
       </div>
     </div>
   );

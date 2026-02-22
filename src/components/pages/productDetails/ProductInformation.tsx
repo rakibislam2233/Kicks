@@ -2,16 +2,34 @@
 
 import { Button } from "@/components/ui/button";
 import { IProduct } from "@/interface/products.interface";
+import { addToCart } from "@/redux/features/cartSlice";
+import { useAppDispatch } from "@/redux/store";
 import { Heart } from "lucide-react";
 import { useState } from "react";
 
 const ProductInformation = ({ product }: { product: IProduct }) => {
+  const dispatch = useAppDispatch();
   const [selectedSize, setSelectedSize] = useState("38");
   const [selectedColor, setSelectedColor] = useState("navy");
 
   const sizes = ["38", "39", "40", "41", "42", "43", "44", "45", "46", "47"];
 
   if (!product) return null;
+
+  const handleAddToCart = () => {
+    dispatch(
+      addToCart({
+        id: String(product.id),
+        name: product.title,
+        price: product.price,
+        image: product.images[0] || "",
+        size: selectedSize,
+        color: selectedColor,
+      }),
+    );
+    // Optional: Add some feedback like a toast or simple message
+    alert("Added to cart!");
+  };
 
   return (
     <div className="flex flex-col gap-6 xl:gap-8">
@@ -83,7 +101,10 @@ const ProductInformation = ({ product }: { product: IProduct }) => {
       {/* Action Buttons */}
       <div className="space-y-2 pt-4">
         <div className="flex items-center gap-2">
-          <Button className="flex-1 h-12 bg-[#232321] text-white font-medium text-sm uppercase rounded-[8px] hover:bg-black cursor-pointer">
+          <Button
+            onClick={handleAddToCart}
+            className="flex-1 h-12 bg-[#232321] text-white font-medium text-sm uppercase rounded-[8px] hover:bg-black cursor-pointer"
+          >
             Add to Cart
           </Button>
           <button className="w-12 h-12 flex items-center justify-center bg-[#232321] text-white rounded-[8px] hover:bg-black cursor-pointer">
