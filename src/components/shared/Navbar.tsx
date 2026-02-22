@@ -9,9 +9,9 @@ import NavActions from "./NavActions";
 import NavLink from "./NavLink";
 
 const navLinks = [
-  { label: "New Drops🔥", href: "/new-drops" },
-  { label: "Men", href: "/men", hasDropdown: true },
-  { label: "Women", href: "/women", hasDropdown: true },
+  { label: "New Drops🔥", href: "/" },
+  { label: "Men", href: "/", hasDropdown: true },
+  { label: "Women", href: "/", hasDropdown: true },
 ];
 
 export const Navbar = () => {
