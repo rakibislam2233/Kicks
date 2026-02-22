@@ -1,3 +1,5 @@
+"use client";
+
 import author from "@/assets/images/author.jpg";
 import author2 from "@/assets/images/author2.png";
 import author3 from "@/assets/images/author3.png";
@@ -6,6 +8,7 @@ import review2 from "@/assets/images/review2.png";
 import review3 from "@/assets/images/review3.png";
 import ReviewCard from "@/components/common/ReviewCard";
 import { Button } from "@/components/ui/button";
+import { motion } from "framer-motion";
 
 const reviews = [
   {
@@ -39,19 +42,37 @@ const Reviews = () => {
     <section className="w-full py-12 xl:py-[128px]">
       <div className="container mx-auto px-4">
         {/* Section Header */}
-        <div className="flex items-center justify-between mb-8 xl:mb-12">
+        <motion.div
+          initial={{ opacity: 0, y: 30 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          viewport={{ once: true }}
+          transition={{ duration: 0.6 }}
+          className="flex items-center justify-between mb-8 xl:mb-12"
+        >
           <h2 className="text-2xl sm:text-4xl xl:text-[74px] font-semibold leading-tight xl:leading-[0.9] text-[#232321] uppercase">
             REVIEWS
           </h2>
           <Button className="h-[36px] xl:h-[48px] bg-primary text-white font-medium uppercase rounded-[8px] px-6 text-[10px] xl:text-sm cursor-pointer tracking-wider hover:bg-primary/90 transition-colors">
             SEE ALL
           </Button>
-        </div>
+        </motion.div>
 
         {/* Review Cards Grid */}
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
-          {reviews.map((review) => (
-            <ReviewCard key={review.id} review={review} />
+          {reviews.map((review, index) => (
+            <motion.div
+              key={review.id}
+              initial={{ opacity: 0, scale: 0.9 }}
+              whileInView={{ opacity: 1, scale: 1 }}
+              viewport={{ once: true }}
+              transition={{
+                duration: 0.5,
+                delay: index * 0.1,
+                ease: [0.32, 0.72, 0, 1],
+              }}
+            >
+              <ReviewCard review={review} />
+            </motion.div>
           ))}
         </div>
       </div>

@@ -85,7 +85,7 @@ const Footer = () => {
                   className="w-full h-auto"
                 />
               </div>
-              <div className="absolute bg-[#FFA52F] rounded-full -top-3 -right-3 sm:-top-8 sm:-right-6 md:-top-11 md:right-0 p-1 sm:p-1.5">
+              <div className="absolute bg-[#FFA52F] rounded-full -top-3 -right-3 sm:-top-8 sm:-right-6 md:-top-11 md:right-0 p-1">
                 <Plus
                   size={14}
                   className="text-primary sm:hidden"
