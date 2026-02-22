@@ -1,7 +1,8 @@
 "use client";
 
+import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
-import { useState } from "react";
+import { useRef, useState } from "react";
 
 const ProductImages = () => {
   const images = [
@@ -9,9 +10,22 @@ const ProductImages = () => {
     "https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=2074&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?q=80&w=2012&auto=format&fit=crop",
     "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1972&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop",
+    "https://images.unsplash.com/photo-1512374382149-4332c6c02151?q=80&w=1935&auto=format&fit=crop",
   ];
 
   const [activeImage, setActiveImage] = useState(0);
+  const scrollRef = useRef<HTMLDivElement>(null);
+
+  const handleScroll = (direction: "left" | "right") => {
+    if (scrollRef.current) {
+      const scrollAmount = 86 * 2; // Approximate width of 2 thumbnails + gaps
+      scrollRef.current.scrollBy({
+        left: direction === "left" ? -scrollAmount : scrollAmount,
+        behavior: "smooth",
+      });
+    }
+  };
 
   return (
     <div className="flex flex-col gap-4">
@@ -39,26 +53,49 @@ const ProductImages = () => {
           </div>
         </div>
 
-        {/* Thumbnails */}
-        <div className="flex gap-4 overflow-x-auto pb-2 scrollbar-hide">
-          {images.map((img, index) => (
-            <button
-              key={index}
-              onClick={() => setActiveImage(index)}
-              className={`relative shrink-0 w-[78px] h-[78px] bg-[#ECEEF0] rounded-[16px] overflow-hidden border-2 transition-all cursor-pointer ${
-                activeImage === index
-                  ? "border-[#4A69E2]"
-                  : "border-transparent"
-              }`}
-            >
-              <Image
-                src={img}
-                alt={`Thumbnail ${index + 1}`}
-                fill
-                className="object-contain p-2"
-              />
-            </button>
-          ))}
+        {/* Thumbnails with Arrows */}
+        <div className="relative flex items-center group">
+          {images.length > 4 && (
+            <>
+              <button
+                onClick={() => handleScroll("left")}
+                className="absolute left-0 z-10 w-8 h-8 flex items-center justify-center bg-white/80 rounded-full shadow-md text-[#232321] transition-opacity hover:bg-white cursor-pointer"
+              >
+                <ChevronLeft size={20} />
+              </button>
+              <button
+                onClick={() => handleScroll("right")}
+                className="absolute right-0 z-10 w-8 h-8 flex items-center justify-center bg-white/80 rounded-full shadow-md text-[#232321] transition-opacity hover:bg-white cursor-pointer"
+              >
+                <ChevronRight size={20} />
+              </button>
+            </>
+          )}
+
+          <div
+            ref={scrollRef}
+            className="flex gap-2 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-1"
+            style={{ width: "100%" }}
+          >
+            {images.map((img, index) => (
+              <button
+                key={index}
+                onClick={() => setActiveImage(index)}
+                className={`relative shrink-0 w-[calc((100%-24px)/4)] aspect-square bg-[#ECEEF0] rounded-[16px] overflow-hidden border-2 transition-all cursor-pointer snap-start ${
+                  activeImage === index
+                    ? "border-[#4A69E2]"
+                    : "border-transparent"
+                }`}
+              >
+                <Image
+                  src={img}
+                  alt={`Thumbnail ${index + 1}`}
+                  fill
+                  className="object-contain p-2"
+                />
+              </button>
+            ))}
+          </div>
         </div>
       </div>
 
@@ -67,7 +104,17 @@ const ProductImages = () => {
         {images.slice(0, 4).map((img, index) => (
           <div
             key={index}
-            className={`relative w-full h-[510px] bg-[#ECEEF0] overflow-hidden ${index === 0 ? "rounded-tl-[48px]" : index === 1 ? "rounded-tr-[48px]" : index === 2 ? "rounded-bl-[48px]" : index === 3 ? "rounded-br-[48px]" : ""}
+            className={`relative w-full h-[510px] bg-[#ECEEF0] overflow-hidden ${
+              index === 0
+                ? "rounded-tl-[48px]"
+                : index === 1
+                  ? "rounded-tr-[48px]"
+                  : index === 2
+                    ? "rounded-bl-[48px]"
+                    : index === 3
+                      ? "rounded-br-[48px]"
+                      : ""
+            }
             `}
           >
             <Image
