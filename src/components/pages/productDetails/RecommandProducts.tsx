@@ -1,5 +1,6 @@
 import ProductCard from "@/components/common/ProductCard";
 import { ArrowLeft, ArrowRight } from "lucide-react";
+import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 const products = [
   {
@@ -44,11 +45,11 @@ const RecommandProducts = () => {
           You may also like
         </h2>
         <div className="flex items-center gap-2">
-          <button className="w-10 h-10 rounded-[8px] bg-[#232321]/30 text-white flex items-center justify-center cursor-pointer">
-            <ArrowLeft size={16} />
+          <button className="w-10 h-10 rounded-[8px] bg-[#232321]/50 text-white flex items-center justify-center cursor-pointer">
+            <MdKeyboardArrowLeft size={24} />
           </button>
           <button className="w-10 h-10 rounded-[8px] bg-[#232321] text-white flex items-center justify-center cursor-pointer">
-            <ArrowRight size={16} />
+            <MdKeyboardArrowRight size={24} />
           </button>
         </div>
       </div>
