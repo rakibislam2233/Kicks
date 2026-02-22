@@ -1,7 +1,8 @@
+
 "use client";
 import ProductCard from "@/components/common/ProductCard";
 import { motion } from "framer-motion";
-import { useEffect, useState } from "react";
+import { useEffect, useRef, useState } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
 const products = [
@@ -56,33 +57,47 @@ const products = [
 ];
 
 const RecommandProducts = () => {
-  const [currentIndex, setCurrentIndex] = useState(0);
-  const [itemsToShow, setItemsToShow] = useState(4);
+  const [currentIndex, setCurrentIndex] = useState<number>(0);
+  const [itemsToShow, setItemsToShow] = useState<number>(5);
+  const [cardWidth, setCardWidth] = useState(318);
+  const containerRef = useRef<HTMLDivElement>(null);
 
   useEffect(() => {
-    const updateItemsToShow = () => {
-      if (window.innerWidth < 640) setItemsToShow(1);
-      else if (window.innerWidth < 1024) setItemsToShow(2);
-      else setItemsToShow(4);
+    const updateLayout = () => {
+      if (containerRef.current) {
+        const containerWidth = containerRef.current.offsetWidth;
+        if (window.innerWidth < 640) {
+          setItemsToShow(1);
+          setCardWidth(containerWidth);
+        } else if (window.innerWidth < 1024) {
+          setItemsToShow(2);
+          setCardWidth((containerWidth - 16) / 2);
+        } else {
+          setItemsToShow(4);
+          setCardWidth((containerWidth - 16 * 3) / 4);
+        }
+      }
     };
 
-    updateItemsToShow();
-    window.addEventListener("resize", updateItemsToShow);
-    return () => window.removeEventListener("resize", updateItemsToShow);
+    updateLayout();
+    window.addEventListener("resize", updateLayout);
+    return () => window.removeEventListener("resize", updateLayout);
   }, []);
 
-  const totalSlides = products.length - itemsToShow + 1;
+  const totalSlides = products.length;
+  // Maximum index we can slide to
+  const maxIndex = Math.max(0, totalSlides - itemsToShow);
 
   const nextSlide = () => {
-    setCurrentIndex((prev) => (prev + 1) % totalSlides);
+    setCurrentIndex((prev) => (prev >= maxIndex ? 0 : prev + 1));
   };
 
   const prevSlide = () => {
-    setCurrentIndex((prev) => (prev - 1 + totalSlides) % totalSlides);
+    setCurrentIndex((prev) => (prev <= 0 ? maxIndex : prev - 1));
   };
 
   return (
-    <section className="w-full pt-12 xl:pt-[128px] pb-12 xl:pb-16 overflow-hidden">
+    <section className="w-full pt-12 xl:pt-[128px] pb-12 xl:pb-16">
       <div className="flex items-center justify-between mb-8">
         <h2 className="text-2xl sm:text-4xl xl:text-[48px] font-semibold leading-tight text-[#232321]">
           You may also like
@@ -103,19 +118,19 @@ const RecommandProducts = () => {
         </div>
       </div>
 
-      <div className="relative">
+      <div className="overflow-hidden" ref={containerRef}>
         <motion.div
           className="flex gap-4"
-          animate={{ x: `-${currentIndex * (100 / itemsToShow)}%` }}
-          transition={{ type: "spring", stiffness: 300, damping: 30 }}
+          animate={{
+            x: `-${currentIndex * (cardWidth + 16)}px`,
+          }}
+          transition={{ duration: 0.6, ease: [0.32, 0.72, 0, 1] }}
         >
           {products.map((product) => (
             <div
               key={product.id}
               className="shrink-0"
-              style={{
-                width: `calc((100% - ${(itemsToShow - 1) * 16}px) / ${itemsToShow})`,
-              }}
+              style={{ width: `${cardWidth}px` }}
             >
               <ProductCard product={product} />
             </div>
@@ -123,17 +138,21 @@ const RecommandProducts = () => {
         </motion.div>
       </div>
 
-      {/* Progress indicators (optional, as seen in your image) */}
-      <div className="flex justify-center gap-2 mt-8">
-        {Array.from({ length: totalSlides }).map((_, i) => (
-          <button
-            key={i}
-            onClick={() => setCurrentIndex(i)}
-            className={`h-[4px] rounded-full transition-all ${
-              currentIndex === i ? "bg-[#4A69E2] w-8" : "bg-[#232321]/10 w-4"
-            }`}
-          />
-        ))}
+      {/* Progress indicators */}
+      <div className="flex justify-center gap-2 mt-12">
+        {products.map((_, i) => {
+          // Only show dots for possible positions
+          if (i > maxIndex) return null;
+          return (
+            <button
+              key={i}
+              onClick={() => setCurrentIndex(i)}
+              className={`h-[4px] rounded-full transition-all duration-300 ${
+                currentIndex === i ? "bg-[#4A69E2] w-8" : "bg-[#232321]/10 w-4"
+              }`}
+            />
+          );
+        })}
       </div>
     </section>
   );
