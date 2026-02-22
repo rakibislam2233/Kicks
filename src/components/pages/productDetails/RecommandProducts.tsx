@@ -1,61 +1,16 @@
 "use client";
+
 import ProductCard from "@/components/common/ProductCard";
+import { IProduct } from "@/interface/products.interface";
 import { motion } from "framer-motion";
 import { useEffect, useRef, useState } from "react";
 import { MdKeyboardArrowLeft, MdKeyboardArrowRight } from "react-icons/md";
 
-const products = [
-  {
-    id: 1,
-    name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-    price: 125,
-    image:
-      "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?q=80&w=2012&auto=format&fit=crop",
-    isNew: true,
-  },
-  {
-    id: 2,
-    name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-    price: 125,
-    image:
-      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=1964&auto=format&fit=crop",
-    isNew: true,
-  },
-  {
-    id: 3,
-    name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-    price: 125,
-    image:
-      "https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=2074&auto=format&fit=crop",
-    isNew: true,
-  },
-  {
-    id: 4,
-    name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-    price: 125,
-    image:
-      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1972&auto=format&fit=crop",
-    isNew: true,
-  },
-  {
-    id: 5,
-    name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-    price: 125,
-    image:
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop",
-    isNew: true,
-  },
-  {
-    id: 6,
-    name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-    price: 125,
-    image:
-      "https://images.unsplash.com/photo-1512374382149-4332c6c02151?q=80&w=1935&auto=format&fit=crop",
-    isNew: true,
-  },
-];
+interface RecommandProductsProps {
+  products: IProduct[];
+}
 
-const RecommandProducts = () => {
+const RecommandProducts = ({ products }: RecommandProductsProps) => {
   const [currentPage, setCurrentPage] = useState(0);
   const [cardWidth, setCardWidth] = useState(318);
   const [cols, setCols] = useState(4);
@@ -86,7 +41,7 @@ const RecommandProducts = () => {
     return () => window.removeEventListener("resize", updateLayout);
   }, []);
 
-  const totalPages = Math.ceil(products.length / itemsPerPage);
+  const totalPages = Math.ceil((products?.length || 0) / itemsPerPage);
 
   const nextSlide = () => {
     if (currentPage < totalPages - 1) {
@@ -100,10 +55,12 @@ const RecommandProducts = () => {
   };
 
   // Current page এর products
-  const currentProducts = products.slice(
+  const currentProducts = (products || []).slice(
     currentPage * itemsPerPage,
     (currentPage + 1) * itemsPerPage,
   );
+
+  if (!products || products.length === 0) return null;
 
   return (
     <section className="w-full pt-12 xl:pt-[128px] pb-12 xl:pb-16">

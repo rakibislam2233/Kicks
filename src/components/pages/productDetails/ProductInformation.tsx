@@ -1,29 +1,34 @@
 "use client";
 
 import { Button } from "@/components/ui/button";
+import { IProduct } from "@/interface/products.interface";
 import { Heart } from "lucide-react";
 import { useState } from "react";
 
-const ProductInformation = () => {
+const ProductInformation = ({ product }: { product: IProduct }) => {
   const [selectedSize, setSelectedSize] = useState("38");
   const [selectedColor, setSelectedColor] = useState("navy");
 
   const sizes = ["38", "39", "40", "41", "42", "43", "44", "45", "46", "47"];
 
+  if (!product) return null;
+
   return (
     <div className="flex flex-col gap-6 xl:gap-8">
       {/* Badge & Title */}
       <div className="space-y-4">
-        <button className="w-[106px] h-[38px] bg-primary text-white text-[10px] xl:text-xs font-semibold rounded-[12px] rou">
-          New Release
+        <button className="h-[38px] px-4 bg-primary text-white text-[10px] xl:text-xs font-semibold rounded-[12px] uppercase">
+          {product.category.name}
         </button>
         <h1 className="text-2xl xl:text-[32px] font-bold text-[#232321] leading-tight uppercase">
-          ADIDAS 4DFWD X PARLEY <br className="hidden xl:block" /> RUNNING SHOES
+          {product.title}
         </h1>
-        <p className="text-xl xl:text-2xl font-bold text-primary">$125.00</p>
+        <p className="text-xl xl:text-2xl font-bold text-primary">
+          ${product.price.toFixed(2)}
+        </p>
       </div>
 
-      {/* Color Selection */}
+      {/* Color Selection (Dummy) */}
       <div className="space-y-4">
         <p className="text-sm xl:text-base font-semibold text-[#232321] uppercase">
           Color
@@ -63,7 +68,7 @@ const ProductInformation = () => {
             <button
               key={size}
               onClick={() => setSelectedSize(size)}
-              className={`w-[50.25px] h-10 xl:h-12 flex items-center justify-center rounded-lg xl:rounded-[8px] text-sm font-medium transition-all cursor-pointer ${
+              className={`size-10 xl:size-12 flex items-center justify-center rounded-lg xl:rounded-[8px] text-sm font-medium transition-all cursor-pointer ${
                 selectedSize === size
                   ? "bg-[#232321] text-white"
                   : "bg-white text-[#232321]"
@@ -95,21 +100,8 @@ const ProductInformation = () => {
         <p className="text-sm xl:text-base font-semibold text-[#232321] uppercase">
           About the product
         </p>
-        <div className="space-y-4 text-sm xl:text-base text-[#232321]/80 leading-relaxed">
-          <p>Shadow Navy / Army Green</p>
-          <p>
-            This product is excluded from all promotional discounts and offers.
-          </p>
-          <ul className="list-disc pl-5 space-y-2">
-            <li>
-              Pay over time in interest-free installments with Affirm, Klarna or
-              Afterpay.
-            </li>
-            <li>
-              Join adiClub to get unlimited free standard shipping, returns, &
-              exchanges.
-            </li>
-          </ul>
+        <div className="space-y-2 text-sm xl:text-base text-[#232321]/80 leading-relaxed">
+          <p className="line-clamp-4">{product.description}</p>
         </div>
       </div>
     </div>

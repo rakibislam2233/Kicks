@@ -1,42 +1,12 @@
 import ProductCard from "@/components/common/ProductCard";
 import { Button } from "@/components/ui/button";
+import { IProduct } from "@/interface/products.interface";
 
-const products = [
-  {
-    id: 1,
-    name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-    price: 125,
-    image:
-      "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?q=80&w=2012&auto=format&fit=crop",
-    isNew: true,
-  },
-  {
-    id: 2,
-    name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-    price: 125,
-    image:
-      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=1964&auto=format&fit=crop",
-    isNew: true,
-  },
-  {
-    id: 3,
-    name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-    price: 125,
-    image:
-      "https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=2074&auto=format&fit=crop",
-    isNew: true,
-  },
-  {
-    id: 4,
-    name: "ADIDAS 4DFWD X PARLEY RUNNING SHOES",
-    price: 125,
-    image:
-      "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1972&auto=format&fit=crop",
-    isNew: true,
-  },
-];
+interface NewDropsProps {
+  products: IProduct[];
+}
 
-const NewDrops = () => {
+const NewDrops = ({ products }: NewDropsProps) => {
   return (
     <section className="w-full container mx-auto px-4 pt-12 xl:pt-[90px] pb-20 xl:pb-[128px]">
       {/* Section Header */}
@@ -51,7 +21,7 @@ const NewDrops = () => {
 
       {/* Products Grid */}
       <div className="grid grid-cols-2 lg:grid-cols-4 gap-4">
-        {products.map((product) => (
+        {products?.map((product) => (
           <ProductCard key={product.id} product={product} />
         ))}
       </div>

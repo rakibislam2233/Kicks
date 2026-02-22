@@ -1,46 +1,18 @@
 "use client";
 
+import { ICategory } from "@/interface/category.interface";
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useState } from "react";
 import { GoArrowUpRight } from "react-icons/go";
 
-const categories = [
-  {
-    id: 1,
-    name: "LIFESTYLE\nSHOES",
-    image:
-      "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop",
-  },
-  {
-    id: 2,
-    name: "BASKETBALL\nSHOES",
-    image:
-      "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=1964&auto=format&fit=crop",
-  },
-  {
-    id: 3,
-    name: "RUNNING\nSHOES",
-    image:
-      "https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=2074&auto=format&fit=crop",
-  },
-  {
-    id: 4,
-    name: "TRAINING\nSHOES",
-    image:
-      "https://images.unsplash.com/photo-1539185441755-769473a23570?q=80&w=2071&auto=format&fit=crop",
-  },
-  {
-    id: 5,
-    name: "OUTDOOR\nSHOES",
-    image:
-      "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?q=80&w=2012&auto=format&fit=crop",
-  },
-];
+interface CategoriesProps {
+  categories: ICategory[];
+}
 
 const VISIBLE_COUNT = 2;
 
-const Categories = () => {
+const Categories = ({ categories }: CategoriesProps) => {
   const [startIndex, setStartIndex] = useState<number>(0);
 
   const handlePrev = () => {
@@ -49,17 +21,18 @@ const Categories = () => {
 
   const handleNext = () => {
     setStartIndex((prev) =>
-      Math.min(prev + 1, categories.length - VISIBLE_COUNT),
+      Math.min(prev + 1, (categories?.length || 0) - VISIBLE_COUNT),
     );
   };
 
-  const visibleCategories = categories.slice(
+  const visibleCategories = (categories || []).slice(
     startIndex,
     startIndex + VISIBLE_COUNT,
   );
 
   const isPrevDisabled = startIndex === 0;
-  const isNextDisabled = startIndex >= categories.length - VISIBLE_COUNT;
+  const isNextDisabled =
+    startIndex >= (categories?.length || 0) - VISIBLE_COUNT;
 
   return (
     <section className="w-full bg-[#232321]">
@@ -109,7 +82,7 @@ const Categories = () => {
               <div className="relative w-full h-full">
                 <Image
                   src={category.image}
-                  alt={category.name.replace("\n", " ")}
+                  alt={category.name}
                   fill
                   className="object-contain scale-[1.1] md:scale-100"
                 />

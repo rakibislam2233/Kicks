@@ -1,18 +1,23 @@
 "use client";
-
 import { ChevronLeft, ChevronRight } from "lucide-react";
 import Image from "next/image";
 import { useRef, useState } from "react";
 
-const ProductImages = () => {
-  const images = [
-    "https://images.unsplash.com/photo-1606107557195-0e29a4b5b4aa?q=80&w=1964&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1608231387042-66d1773070a5?q=80&w=2074&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1587563871167-1ee9c731aefb?q=80&w=2012&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?q=80&w=1972&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1542291026-7eec264c27ff?q=80&w=2070&auto=format&fit=crop",
-    "https://images.unsplash.com/photo-1512374382149-4332c6c02151?q=80&w=1935&auto=format&fit=crop",
-  ];
+const ProductImages = ({ images = [] }: { images: string[] }) => {
+  // Clean up image logic for Platzi API
+  const cleanImage = (imageUrl: string) => {
+    try {
+      if (imageUrl.startsWith("[") && imageUrl.endsWith("]")) {
+        const parsed = JSON.parse(imageUrl);
+        return Array.isArray(parsed) ? parsed[0] : imageUrl;
+      }
+      return imageUrl.replace(/[[\]"]/g, "");
+    } catch {
+      return imageUrl.replace(/[[\]"]/g, "");
+    }
+  };
+
+  const productImages = images.map((img) => cleanImage(img));
 
   const [activeImage, setActiveImage] = useState(0);
   const scrollRef = useRef<HTMLDivElement>(null);
@@ -32,16 +37,18 @@ const ProductImages = () => {
       {/* Mobile Slider View */}
       <div className="xl:hidden flex flex-col gap-4">
         <div className="relative aspect-square bg-[#ECEEF0] rounded-[24px] overflow-hidden">
-          <Image
-            src={images[activeImage]}
-            alt="Active product image"
-            fill
-            className="object-contain p-8"
-            priority
-          />
+          {productImages.length > 0 && (
+            <Image
+              src={productImages[activeImage]}
+              alt="Active product image"
+              fill
+              className="object-contain p-8"
+              priority
+            />
+          )}
           {/* Slider Dots */}
           <div className="absolute bottom-4 left-0 right-0 flex justify-center gap-2">
-            {images.map((_, i) => (
+            {productImages.map((_, i) => (
               <button
                 key={i}
                 onClick={() => setActiveImage(i)}
@@ -55,7 +62,7 @@ const ProductImages = () => {
 
         {/* Thumbnails with Arrows */}
         <div className="relative flex items-center group">
-          {images.length > 4 && (
+          {productImages.length > 4 && (
             <>
               <button
                 onClick={() => handleScroll("left")}
@@ -77,7 +84,7 @@ const ProductImages = () => {
             className="flex gap-2 overflow-x-auto scrollbar-hide snap-x snap-mandatory px-1"
             style={{ width: "100%" }}
           >
-            {images.map((img, index) => (
+            {productImages.map((img, index) => (
               <button
                 key={index}
                 onClick={() => setActiveImage(index)}
@@ -101,7 +108,7 @@ const ProductImages = () => {
 
       {/* Desktop Grid View */}
       <div className="hidden xl:grid grid-cols-2 gap-4">
-        {images.slice(0, 4).map((img, index) => (
+        {productImages.slice(0, 4).map((img, index) => (
           <div
             key={index}
             className={`relative w-full h-[510px] bg-[#ECEEF0] overflow-hidden ${
