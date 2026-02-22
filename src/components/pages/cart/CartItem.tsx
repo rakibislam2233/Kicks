@@ -53,68 +53,68 @@ const CartItem = ({ item }: CartItemProps) => {
   };
 
   return (
-    <div className="flex gap-4 xl:gap-6 py-6 border-b border-[#ECEEF0] last:border-0">
+    <div className="flex gap-3 sm:gap-4 xl:gap-6 py-5 sm:py-6 border-b border-[#ECEEF0] last:border-0">
       {/* Product Image */}
-      <div className="relative w-[120px] h-[120px] xl:w-[200px] xl:h-[200px] bg-[#ECEEF0] rounded-[24px] overflow-hidden shrink-0">
+      <div className="relative w-20 h-20 sm:w-[120px] sm:h-[120px] xl:w-[200px] xl:h-[200px] bg-[#ECEEF0] rounded-[16px] xl:rounded-[24px] overflow-hidden shrink-0">
         <Image
           src={item.image}
           alt={item.name}
           fill
-          className="object-contain p-4"
+          className="object-contain p-2 sm:p-4"
         />
       </div>
 
       {/* Product Details */}
-      <div className="flex flex-col flex-1 justify-between">
-        <div className="flex flex-col xl:flex-row justify-between gap-2">
+      <div className="flex flex-col flex-1 min-w-0 justify-between">
+        <div className="flex flex-col sm:flex-row justify-between gap-2">
           <div className="space-y-1">
-            <h3 className="text-base xl:text-[24px] font-bold text-[#232321] uppercase leading-tight">
+            <h3 className="text-sm sm:text-base xl:text-[24px] font-bold text-[#232321] uppercase leading-tight truncate-2-lines">
               {item.name}
             </h3>
             {item.category && (
-              <p className="text-sm xl:text-[16px] font-semibold text-[#232321]/60">
+              <p className="text-[10px] sm:text-sm xl:text-[16px] font-semibold text-[#232321]/60">
                 {item.category}
               </p>
             )}
             {item.description && (
-              <p className="text-sm xl:text-[16px] font-semibold text-[#232321]/60">
+              <p className="text-[10px] sm:text-sm xl:text-[16px] font-semibold text-[#232321]/60">
                 {item.description}
               </p>
             )}
           </div>
-          <p className="text-base xl:text-[20px] font-bold text-primary">
+          <p className="text-sm sm:text-base xl:text-[20px] font-bold text-primary shrink-0">
             ${(item.price * item.quantity).toFixed(2)}
           </p>
         </div>
 
         {/* Dropdowns & Actions */}
-        <div className="flex flex-col xl:flex-row xl:items-center justify-between gap-4 mt-4">
-          <div className="flex items-center gap-6">
-            <div className="flex items-center gap-2">
-              <span className="text-sm xl:text-[16px] font-semibold text-[#232321]/60">
+        <div className="flex flex-wrap items-center justify-between gap-3 mt-3 sm:mt-4">
+          <div className="flex items-center gap-4 sm:gap-6">
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="text-[10px] sm:text-sm xl:text-[16px] font-semibold text-[#232321]/60">
                 Size
               </span>
-              <button className="flex items-center gap-1 text-sm xl:text-[16px] font-bold text-[#232321] cursor-pointer">
-                {item.size} <ChevronDown size={16} />
+              <button className="flex items-center gap-1 text-[10px] sm:text-sm xl:text-[16px] font-bold text-[#232321] cursor-pointer">
+                {item.size} <ChevronDown size={14} className="sm:w-4 sm:h-4" />
               </button>
             </div>
-            <div className="flex items-center gap-2">
-              <span className="text-sm xl:text-[16px] font-semibold text-[#232321]/60">
-                Quantity
+            <div className="flex items-center gap-1.5 sm:gap-2">
+              <span className="text-[10px] sm:text-sm xl:text-[16px] font-semibold text-[#232321]/60">
+                Qty
               </span>
-              <div className="flex items-center gap-3">
+              <div className="flex items-center gap-2 sm:gap-3">
                 <button
                   onClick={handleQuantityDecrease}
-                  className="w-6 h-6 flex items-center justify-center border border-[#232321]/20 rounded-md font-bold cursor-pointer"
+                  className="size-5 sm:size-6 flex items-center justify-center border border-[#232321]/20 rounded-md font-bold cursor-pointer text-xs sm:text-sm"
                 >
                   -
                 </button>
-                <span className="text-sm xl:text-[16px] font-bold text-[#232321]">
+                <span className="text-xs sm:text-sm xl:text-[16px] font-bold text-[#232321]">
                   {item.quantity}
                 </span>
                 <button
                   onClick={handleQuantityIncrease}
-                  className="w-6 h-6 flex items-center justify-center border border-[#232321]/20 rounded-md font-bold cursor-pointer"
+                  className="size-5 sm:size-6 flex items-center justify-center border border-[#232321]/20 rounded-md font-bold cursor-pointer text-xs sm:text-sm"
                 >
                   +
                 </button>
@@ -122,15 +122,15 @@ const CartItem = ({ item }: CartItemProps) => {
             </div>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex items-center gap-3 sm:gap-4">
             <button className="text-[#232321] hover:text-primary transition-colors cursor-pointer">
-              <Heart size={24} />
+              <Heart size={20} className="sm:w-6 sm:h-6" />
             </button>
             <button
               onClick={handleRemove}
               className="text-[#232321] hover:text-destructive transition-colors cursor-pointer"
             >
-              <Trash2 size={24} />
+              <Trash2 size={20} className="sm:w-6 sm:h-6" />
             </button>
           </div>
         </div>

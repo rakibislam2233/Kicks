@@ -41,7 +41,7 @@ const ProductCard = ({ product }: IProductCardProps) => {
             src={mainImage}
             alt={product.title}
             fill
-            className="object-contain rounded-[16px] xl:rounded-[24px] group-hover:scale-105 transition-transform duration-500"
+            className="object-contain rounded-[16px] xl:rounded-[24px]"
           />
         </div>
       </div>
