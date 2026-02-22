@@ -58,11 +58,11 @@ const products = [
 const RecommandProducts = () => {
   const [currentPage, setCurrentPage] = useState(0);
   const [cardWidth, setCardWidth] = useState(318);
-  const [cols, setCols] = useState(4); // desktop: 4 col, mobile: 2 col
-  const [rows, setRows] = useState(1); // desktop: 1 row, mobile: 2 row
+  const [cols, setCols] = useState(4);
+  const [rows, setRows] = useState(1);
   const containerRef = useRef<HTMLDivElement>(null);
 
-  const itemsPerPage = cols * rows; // desktop: 4x1=4, mobile: 2x2=4
+  const itemsPerPage = cols * rows;
 
   useEffect(() => {
     const updateLayout = () => {
@@ -88,9 +88,16 @@ const RecommandProducts = () => {
 
   const totalPages = Math.ceil(products.length / itemsPerPage);
 
-  const nextSlide = () => setCurrentPage((p) => (p + 1) % totalPages);
-  const prevSlide = () =>
-    setCurrentPage((p) => (p - 1 + totalPages) % totalPages);
+  const nextSlide = () => {
+    if (currentPage < totalPages - 1) {
+      setCurrentPage((p) => p + 1);
+    }
+  };
+  const prevSlide = () => {
+    if (currentPage > 0) {
+      setCurrentPage((p) => p - 1);
+    }
+  };
 
   // Current page এর products
   const currentProducts = products.slice(
@@ -107,13 +114,23 @@ const RecommandProducts = () => {
         <div className="flex items-center gap-2">
           <button
             onClick={prevSlide}
-            className="w-10 h-10 rounded-[8px] bg-[#E7E7E3] text-[#232321] flex items-center justify-center cursor-pointer hover:bg-gray-200 transition-colors"
+            disabled={currentPage === 0}
+            className={`w-10 h-10 rounded-[8px] flex items-center justify-center transition-colors ${
+              currentPage === 0
+                ? "bg-[#232321]/50 text-white cursor-not-allowed"
+                : "bg-[#232321] text-white cursor-pointer hover:bg-black"
+            }`}
           >
             <MdKeyboardArrowLeft size={24} />
           </button>
           <button
             onClick={nextSlide}
-            className="w-10 h-10 rounded-[8px] bg-[#232321] text-white flex items-center justify-center cursor-pointer hover:bg-black transition-colors"
+            disabled={currentPage === totalPages - 1}
+            className={`w-10 h-10 rounded-[8px] flex items-center justify-center transition-colors ${
+              currentPage === totalPages - 1
+                ? "bg-[#232321]/50 text-white cursor-not-allowed"
+                : "bg-[#232321] text-white cursor-pointer hover:bg-black"
+            }`}
           >
             <MdKeyboardArrowRight size={24} />
           </button>
