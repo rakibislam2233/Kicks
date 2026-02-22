@@ -1,19 +1,7 @@
 import logo from "@/assets/logo/footer-logo.png";
-import { Facebook, Instagram, Twitter } from "lucide-react";
 import Image from "next/image";
 import Link from "next/link";
-
-// TikTok icon (not in lucide-react)
-const TikTokIcon = () => (
-  <svg
-    xmlns="http://www.w3.org/2000/svg"
-    viewBox="0 0 24 24"
-    fill="currentColor"
-    className="w-5 h-5"
-  >
-    <path d="M19.59 6.69a4.83 4.83 0 0 1-3.77-4.25V2h-3.45v13.67a2.89 2.89 0 0 1-2.88 2.5 2.89 2.89 0 0 1-2.89-2.89 2.89 2.89 0 0 1 2.89-2.89c.28 0 .54.04.79.1V9.01a6.33 6.33 0 0 0-.79-.05 6.34 6.34 0 0 0-6.34 6.34 6.34 6.34 0 0 0 6.34 6.34 6.34 6.34 0 0 0 6.33-6.34V8.88a8.27 8.27 0 0 0 4.84 1.55V7c-.97 0-1.88-.28-2.07-.31z" />
-  </svg>
-);
+import { FaFacebook, FaInstagram, FaTiktok, FaTwitter } from "react-icons/fa";
 
 const footerLinks = {
   categories: [
@@ -32,16 +20,16 @@ const footerLinks = {
 };
 
 const socialLinks = [
-  { icon: <Facebook className="w-5 h-5" />, href: "#", label: "Facebook" },
-  { icon: <Instagram className="w-5 h-5" />, href: "#", label: "Instagram" },
-  { icon: <Twitter className="w-5 h-5" />, href: "#", label: "Twitter" },
-  { icon: <TikTokIcon />, href: "#", label: "TikTok" },
+  { icon: <FaFacebook className="size-6" />, href: "#", label: "Facebook" },
+  { icon: <FaInstagram className="size-6" />, href: "#", label: "Instagram" },
+  { icon: <FaTwitter className="size-6" />, href: "#", label: "Twitter" },
+  { icon: <FaTiktok className="size-6" />, href: "#", label: "TikTok" },
 ];
 
 const Footer = () => {
   return (
     <footer>
-      <div className="w-full h-full md:max-h-[591px] container mx-auto rounded-[32px] xl:rounded-[48px] bg-[#232321] -mt-12 m  overflow-hidden">
+      <div className="w-full h-full container mx-auto rounded-[32px] xl:rounded-[48px] bg-[#232321] -mt-12 m  overflow-hidden">
         {/* Main Footer Content */}
         <div className="flex flex-col xl:flex-row gap-10 xl:gap-12 px-5 md:px-10 pt-10">
           {/* About Us — fixed 446px width on XL */}
@@ -71,7 +59,7 @@ const Footer = () => {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-white font-semibold text-lg xl:text-sm hover:text-primary transition-colors"
+                      className="text-white font-medium text-base xl:text-[18px] hover:text-primary transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -90,7 +78,7 @@ const Footer = () => {
                   <li key={link.label}>
                     <Link
                       href={link.href}
-                      className="text-white font-semibold text-lg xl:text-sm hover:text-primary transition-colors"
+                     className="text-white font-medium text-base xl:text-[18px] hover:text-primary transition-colors"
                     >
                       {link.label}
                     </Link>
@@ -110,7 +98,7 @@ const Footer = () => {
                     key={social.label}
                     href={social.href}
                     aria-label={social.label}
-                    className="text-white hover:text-primary transition-colors scale-110"
+                    className="text-white hover:text-primary transition-colors scale-110 size-6"
                   >
                     {social.icon}
                   </Link>
@@ -121,7 +109,7 @@ const Footer = () => {
         </div>
 
         {/* Big Decorative Logo */}
-        <div className="w-full overflow-hidden mt-12 px-1 md:px-4">
+        <div className="w-full overflow-hidden mt-12 md:mt-24 px-1 md:px-4">
           <Image
             src={logo}
             alt="Kicks Logo"

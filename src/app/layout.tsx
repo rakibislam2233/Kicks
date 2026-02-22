@@ -2,12 +2,14 @@ import { ReduxProvider } from "@/redux/provider";
 import type { Metadata, Viewport } from "next";
 import { Rubik } from "next/font/google";
 import "./globals.css";
+import { Navbar } from "@/components/shared/Navbar";
+import Footer from "@/components/shared/Footer";
 
 // Rubik font
 const rubik = Rubik({
   subsets: ["latin"],
   variable: "--font-rubik",
-  weight: ["400", "500", "600", "700",],
+  weight: ["400", "500", "600", "700"],
 });
 
 // Viewport
@@ -94,7 +96,11 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning>
       <body className={`${rubik.className} antialiased`}>
-        <ReduxProvider>{children}</ReduxProvider>
+        <ReduxProvider>
+          <Navbar />
+          {children}
+          <Footer />
+        </ReduxProvider>
       </body>
     </html>
   );
