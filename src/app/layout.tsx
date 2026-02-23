@@ -102,7 +102,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
-          <Toaster />
+          <Toaster richColors position="top-center" duration={2000}  theme="light"/>
         </ReduxProvider>
       </body>
     </html>

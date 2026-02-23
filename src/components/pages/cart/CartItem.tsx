@@ -55,7 +55,7 @@ const CartItem = ({ item }: CartItemProps) => {
   return (
     <div className="flex gap-3 sm:gap-4 xl:gap-6 py-5 sm:py-6 border-b border-[#ECEEF0] last:border-0">
       {/* Product Image */}
-      <div className="relative w-[157px] h-[216px] xl:w-[207px] xl:h-[225px] bg-[#ECEEF0] rounded-[16px] xl:rounded-[24px] overflow-hidden shrink-0">
+      <div className="relative w-[157px] h-[216px] xl:w-[207px] xl:h-[225px] bg-[#ECEEF0] rounded-[24px] overflow-hidden shrink-0">
         <Image
           src={item.image}
           alt={item.name}
@@ -65,42 +65,36 @@ const CartItem = ({ item }: CartItemProps) => {
       </div>
 
       {/* Product Details */}
-      <div className="flex flex-col flex-1 min-w-0 justify-between">
-        <div className="flex flex-col sm:flex-row justify-between gap-2">
-          <div className="space-y-1">
-            <h3 className="text-sm sm:text-base xl:text-[24px] font-bold text-[#232321] uppercase leading-tight truncate-2-lines">
-              {item.name}
-            </h3>
-            {item.category && (
-              <p className="text-[10px] sm:text-sm xl:text-[16px] font-semibold text-[#232321]/60">
-                {item.category}
+      <div className="flex flex-col flex-1 min-w-0 justify-between gap-5">
+        <div className="space-y-2">
+          <div className="flex flex-col sm:flex-row justify-between gap-2">
+            <div className="space-y-1">
+              <h3 className="text-base xl:text-[24px] font-semibold text-[#232321] uppercase leading-tight truncate-2-lines">
+                {item?.name}
+              </h3>
+              <p className="text-sm xl:text-[16px] font-semibold text-[#232321]/60">
+                {item?.category || "Men’s Road Running Shoes"}
               </p>
-            )}
-            {item.description && (
-              <p className="text-[10px] sm:text-sm xl:text-[16px] font-semibold text-[#232321]/60">
-                {item.description}
+              <p className="text-sm xl:text-[16px] font-semibold text-[#232321]/60">
+                {item?.description || "Men’s Road Running Shoes"}
               </p>
-            )}
+            </div>
+            <p className="text-sm sm:text-base xl:text-[20px] font-bold text-primary shrink-0">
+              ${(item.price * item.quantity).toFixed(2)}
+            </p>
           </div>
-          <p className="text-sm sm:text-base xl:text-[20px] font-bold text-primary shrink-0">
-            ${(item.price * item.quantity).toFixed(2)}
-          </p>
-        </div>
-
-        {/* Dropdowns & Actions */}
-        <div className="flex flex-wrap items-center justify-between gap-3 mt-3 sm:mt-4">
-          <div className="flex items-center gap-4 sm:gap-6">
-            <div className="flex items-center gap-1.5 sm:gap-2">
+          <div className="flex flex-col sm:flex-row  gap-2 sm:gap-4 mt-5 ">
+            <div className="flex items-center gap-1.5">
               <span className="text-[10px] sm:text-sm xl:text-[16px] font-semibold text-[#232321]/60">
                 Size
               </span>
-              <button className="flex items-center gap-1 text-[10px] sm:text-sm xl:text-[16px] font-bold text-[#232321] cursor-pointer">
-                {item.size} <ChevronDown size={14} className="sm:w-4 sm:h-4" />
+              <button className="flex items-center gap-1 text-[10px] sm:text-sm xl:text-[16px] font-semibold text-[#232321]/60 cursor-pointer">
+                {item.size} <ChevronDown size={16} className="size-4" />
               </button>
             </div>
             <div className="flex items-center gap-1.5 sm:gap-2">
               <span className="text-[10px] sm:text-sm xl:text-[16px] font-semibold text-[#232321]/60">
-                Qty
+                Quantity
               </span>
               <div className="flex items-center gap-2 sm:gap-3">
                 <button
@@ -109,7 +103,7 @@ const CartItem = ({ item }: CartItemProps) => {
                 >
                   -
                 </button>
-                <span className="text-xs sm:text-sm xl:text-[16px] font-bold text-[#232321]">
+                <span className="text-xs sm:text-sm xl:text-[16px] font-bold text-[#232321]/60">
                   {item.quantity}
                 </span>
                 <button
@@ -121,18 +115,18 @@ const CartItem = ({ item }: CartItemProps) => {
               </div>
             </div>
           </div>
-
-          <div className="flex items-center gap-3 sm:gap-4">
-            <button className="text-[#232321] hover:text-primary transition-colors cursor-pointer">
-              <Heart size={20} className="sm:w-6 sm:h-6" />
-            </button>
-            <button
-              onClick={handleRemove}
-              className="text-[#232321] hover:text-destructive transition-colors cursor-pointer"
-            >
-              <Trash2 size={20} className="sm:w-6 sm:h-6" />
-            </button>
-          </div>
+        </div>
+        {/* Dropdowns & Actions */}
+        <div className="flex items-center gap-3 sm:gap-4">
+          <button className="text-[#232321] hover:text-primary transition-colors cursor-pointer">
+            <Heart size={20} className="sm:w-6 sm:h-6" />
+          </button>
+          <button
+            onClick={handleRemove}
+            className="text-[#232321] hover:text-destructive transition-colors cursor-pointer"
+          >
+            <Trash2 size={20} className="sm:w-6 sm:h-6" />
+          </button>
         </div>
       </div>
     </div>

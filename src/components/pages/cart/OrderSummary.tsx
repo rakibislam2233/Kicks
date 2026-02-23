@@ -8,29 +8,29 @@ const OrderSummary = () => {
   const total = totalAmount + deliveryFee;
 
   return (
-    <div className="w-full xl:w-[412px] bg-white rounded-[24px] xl:rounded-[32px] p-6 xl:p-8">
-      <div className="space-y-6 xl:space-y-8">
-        <h2 className="text-xl sm:text-2xl xl:text-[32px] font-bold text-[#232321] uppercase">
+    <div className="w-full xl:w-[418px] h-[342px] bg-white md:bg-transparent rounded-[24px] xl:rounded-[32px] p-6 xl:p-8">
+      <div className="space-y-6">
+        <h2 className="text-[20px] xl:text-[32px] font-bold text-[#232321] uppercase">
           Order Summary
         </h2>
 
-        <div className="space-y-4 xl:space-y-6">
-          <div className="flex justify-between items-center text-sm sm:text-base xl:text-[20px] font-semibold text-[#232321]">
-            <span className="uppercase">
+        <div className="space-y-4">
+          <div className="flex justify-between items-center text-base xl:text-[20px] font-medium text-[#232321]">
+            <span>
               {totalQuantity} ITEM{totalQuantity !== 1 ? "S" : ""}
             </span>
             <span>${totalAmount.toFixed(2)}</span>
           </div>
-          <div className="flex justify-between items-center text-sm sm:text-base xl:text-[20px] font-semibold text-[#232321]">
-            <span className="uppercase">Delivery</span>
+          <div className="flex justify-between items-center text-base xl:text-[20px] font-medium text-[#232321]">
+            <span>Delivery</span>
             <span>${deliveryFee.toFixed(2)}</span>
           </div>
-          <div className="flex justify-between items-center text-sm sm:text-base xl:text-[20px] font-semibold text-[#232321]">
-            <span className="uppercase">Sales Tax</span>
+          <div className="flex justify-between items-center text-sm sm:text-base xl:text-[20px] font-medium text-[#232321]">
+            <span>Sales Tax</span>
             <span className="text-[#232321]/60">-</span>
           </div>
-          <div className="flex justify-between items-center text-base sm:text-lg xl:text-[24px] font-bold text-[#232321] pt-4 border-t border-[#ECEEF0]">
-            <span className="uppercase">Total</span>
+          <div className="flex justify-between items-center text-base sm:text-lg xl:text-[24px] font-bold text-[#232321]">
+            <span>Total</span>
             <span>${total.toFixed(2)}</span>
           </div>
         </div>
@@ -43,8 +43,8 @@ const OrderSummary = () => {
         </Button>
       </div>
 
-      <div className="mt-6 xl:mt-8">
-        <button className="text-sm sm:text-base xl:text-[20px] font-bold text-[#232321] underline hover:text-primary transition-colors cursor-pointer">
+      <div className="mt-4">
+        <button className="text-sm sm:text-base xl:text-[20px] text-[#232321] underline hover:text-primary transition-colors cursor-pointer">
           Use a promo code
         </button>
       </div>

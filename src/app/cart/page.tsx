@@ -1,7 +1,11 @@
 import CartBag from "@/components/pages/cart/CartBag";
 import OrderSummary from "@/components/pages/cart/OrderSummary";
+import RecommandProducts from "@/components/pages/productDetails/RecommandProducts";
+import { getAllProducts } from "@/services/products.services";
 
-const CartPage = () => {
+const CartPage = async () => {
+  const response = await getAllProducts();
+  const products = response.data.sort((a, b) => b.id - a.id) || [];
   return (
     <main className="w-full h-full">
       <div className="container mx-auto px-4 md:px-8">
@@ -28,7 +32,7 @@ const CartPage = () => {
         </div>
 
         {/* Main Cart Content */}
-        <div className="flex flex-col xl:flex-row gap-8 xl:gap-12">
+        <div className="flex flex-col xl:flex-row gap-8">
           {/* Left: Your Bag */}
           <div className="flex-1">
             <CartBag />
@@ -39,6 +43,7 @@ const CartPage = () => {
             <OrderSummary />
           </div>
         </div>
+        <RecommandProducts products={products.slice(0, 3)} />
       </div>
     </main>
   );
