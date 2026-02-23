@@ -40,7 +40,7 @@ const Categories = ({ categories }: CategoriesProps) => {
 
   return (
     <section className="w-full bg-[#232321]">
-      <div className="container mx-auto px-4">
+      <div className="container mx-auto px-4 pb-4 md:pb-0">
         {/* Section Header */}
         <div className="flex items-center justify-between pt-12 xl:pt-[90px] pb-8 xl:pb-[64px]">
           <motion.h2
@@ -56,7 +56,7 @@ const Categories = ({ categories }: CategoriesProps) => {
             <button
               onClick={handlePrev}
               disabled={isPrevDisabled}
-              className={`w-[40px] h-[40px] rounded-[4px] xl:rounded-[8px] border flex items-center justify-center transition-colors
+              className={`w-[40px] h-[40px] rounded-[8px] border flex items-center justify-center transition-colors
                 ${
                   isPrevDisabled
                     ? "bg-[#E7E7E3] border-[#E7E7E3] text-black cursor-not-allowed opacity-50"
@@ -68,7 +68,7 @@ const Categories = ({ categories }: CategoriesProps) => {
             <button
               onClick={handleNext}
               disabled={isNextDisabled}
-              className={`w-[40px] h-[40px] rounded-[4px] xl:rounded-[8px] border flex items-center justify-center transition-colors
+              className={`w-[40px] h-[40px] rounded-[8px] border flex items-center justify-center transition-colors
                  ${
                    isNextDisabled
                      ? "bg-[#E7E7E3] border-[#E7E7E3] text-black cursor-not-allowed opacity-50"
@@ -86,7 +86,7 @@ const Categories = ({ categories }: CategoriesProps) => {
             <motion.div
               key={startIndex}
               custom={direction}
-              className="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-2"
+              className="col-span-1 md:col-span-2 grid grid-cols-1 md:grid-cols-2 bg-white sm:bg-transparent rounded-tl-[24px]"
               initial={{ opacity: 0, x: direction > 0 ? 100 : -100 }}
               animate={{ opacity: 1, x: 0 }}
               exit={{ opacity: 0, x: direction > 0 ? -100 : 100 }}
@@ -95,11 +95,10 @@ const Categories = ({ categories }: CategoriesProps) => {
               {visibleCategories.map((category) => (
                 <div
                   key={category.id}
-                  className={`w-full relative odd:bg-[#ECEEF0] even:bg-[#F6F6F6] first:rounded-t-[24px] md:first:rounded-t-none md:odd:rounded-tl-[24px] xl:odd:rounded-tl-[64px] p-6 xl:p-[64px] overflow-hidden h-[280px] md:h-[600px] cursor-pointer group`}
+                  className={`w-full relative odd:bg-[#ECEEF0] even:bg-[#F6F6F6] odd:rounded-tl-[24px] xl:odd:rounded-tl-[64px] p-6 xl:p-[64px] overflow-hidden h-[280px] md:h-[600px] cursor-pointer group`}
                 >
                   {/* Shoe Image */}
                   <motion.div
-                    whileHover={{ scale: 1.1 }}
                     transition={{ duration: 0.5 }}
                     className="relative w-full h-full"
                   >
@@ -107,16 +106,16 @@ const Categories = ({ categories }: CategoriesProps) => {
                       src={category.image}
                       alt={category.name}
                       fill
-                      className="object-contain scale-[1.1] md:scale-100"
+                      className="object-contain"
                     />
                   </motion.div>
 
                   {/* Bottom Info */}
-                  <div className="absolute bottom-0 left-6 xl:left-[64px] right-6 xl:right-[64px] flex items-end justify-between py-6">
+                  <div className="absolute bottom-0 left-6 xl:left-[64px] right-4 xl:right-[64px] flex items-end justify-between py-6">
                     <h3 className="text-[#232321] text-lg md:text-2xl xl:text-[36px] font-semibold uppercase leading-tight whitespace-pre-line">
                       {category.name}
                     </h3>
-                    <button className="w-8 h-8 xl:w-[48px] xl:h-[48px] bg-[#232321] rounded-[8px] flex items-center justify-center shrink-0 transition-colors cursor-pointer group-hover:bg-primary">
+                    <button className="w-8 h-8 xl:w-[48px] xl:h-[48px] bg-[#232321] rounded-[4px] xl:rounded-[8px] flex items-center justify-center shrink-0 transition-colors cursor-pointer">
                       <GoArrowUpRight
                         size={20}
                         className="text-white xl:hidden"
