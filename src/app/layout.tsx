@@ -1,9 +1,9 @@
+import Footer from "@/components/shared/Footer";
+import { Navbar } from "@/components/shared/Navbar";
 import { ReduxProvider } from "@/redux/provider";
 import type { Metadata, Viewport } from "next";
 import { Rubik } from "next/font/google";
 import "./globals.css";
-import { Navbar } from "@/components/shared/Navbar";
-import Footer from "@/components/shared/Footer";
 
 // Rubik font
 const rubik = Rubik({
@@ -87,6 +87,8 @@ export const metadata: Metadata = {
   },
 };
 
+import { Toaster } from "@/components/ui/sonner";
+
 // Root Layout
 export default function RootLayout({
   children,
@@ -100,6 +102,7 @@ export default function RootLayout({
           <Navbar />
           {children}
           <Footer />
+          <Toaster />
         </ReduxProvider>
       </body>
     </html>

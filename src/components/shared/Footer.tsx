@@ -38,8 +38,8 @@ const Footer = () => {
   };
   return (
     <footer>
-      <div className="w-full container bg-primary rounded-t-[24px] xl:rounded-t-[32px] mx-auto px-6 md:px-[72px] pt-14 md:pt-16 pb-14 md:pb-24">
-        <div className="flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12">
+      <div className="w-full container bg-primary rounded-t-[24px] xl:rounded-t-[32px] mx-auto p-4 md:p-[72px] pb-20 md:pb-24">
+        <div className="flex flex-col md:flex-row items-center justify-between gap-10 md:gap-12">
           {/* Left: Text Content */}
           <div className="w-full">
             <h2 className="text-2xl sm:text-4xl xl:text-[48px] font-semibold text-white uppercase leading-tight mb-3">
@@ -66,7 +66,7 @@ const Footer = () => {
               />
               <button
                 type="submit"
-                className="w-[102px] h-[48px] bg-[#232321] text-white text-sm font-semibold uppercase tracking-wider rounded-[4px] xl:rounded-[8px] hover:bg-black transition-colors cursor-pointer whitespace-nowrap"
+                className="w-[102px] h-[48px] bg-[#232321] text-white text-sm font-semibold uppercase tracking-wider rounded-[8px] hover:bg-black transition-colors cursor-pointer whitespace-nowrap"
               >
                 SUBMIT
               </button>
@@ -74,9 +74,9 @@ const Footer = () => {
           </div>
 
           {/* Right: Big KICKS Logo */}
-          <div className="w-full flex justify-center items-center">
+          <div className="w-full flex justify-start md:justify-center items-center">
             <div className="relative inline-block">
-              <div className="w-[180px] sm:w-[280px] md:w-[351px]">
+              <div className="w-[191px] sm:w-[280px] md:w-[351px] h-[48px] sm:h-[72px] md:h-[88px]">
                 <Image
                   src={kicksLogo}
                   alt="Kicks Logo"
@@ -106,24 +106,20 @@ const Footer = () => {
         <div className="flex flex-col xl:flex-row gap-10 xl:gap-12 px-5 md:px-10 pt-10">
           {/* About Us — fixed 446px width on XL */}
           <div className="w-full xl:w-[446px] shrink-0">
-            <h3 className="text-[#FFA52F] text-[32px] xl:text-[36px] font-semibold mb-4">
+            <h3 className="text-[#FFA52F] text-[32px] xl:text-[36px] font-semibold mb-[4px] md:mb-4">
               About us
             </h3>
-            <p className="text-white/70 text-lg xl:text-[20px] font-semibold leading-relaxed">
+            <p className="text-[#E7E7E3] text-base xl:text-[20px] font-medium leading-relaxed">
               We are the biggest hyperstore in the universe. We got you all
-              cover with our{" "}
-              <span className="text-white underline cursor-pointer">
-                exclusive
-              </span>{" "}
-              collections and latest drops.
+              cover with our exclusive collections and latest drops.
             </p>
           </div>
 
           {/* Right columns — Categories, Company, Follow Us */}
-          <div className="flex flex-1 flex-col sm:flex-row gap-10 sm:gap-12">
+          <div className="flex flex-1 flex-col sm:flex-row gap-8 sm:gap-12">
             {/* Categories */}
             <div className="flex-1">
-              <h3 className="text-[#FFA52F] text-[24px] font-semibold mb-6">
+              <h3 className="text-[#FFA52F] text-[24px] font-semibold mb-4 md:mb-6">
                 Categories
               </h3>
               <ul className="flex flex-col gap-3">
@@ -142,7 +138,7 @@ const Footer = () => {
 
             {/* Company */}
             <div className="flex-1">
-              <h3 className="text-[#FFA52F] text-[24px] font-semibold mb-6">
+              <h3 className="text-[#FFA52F] text-[24px] font-semibold mb-4 md:mb-6">
                 Company
               </h3>
               <ul className="flex flex-col gap-3">
@@ -161,7 +157,7 @@ const Footer = () => {
 
             {/* Follow Us */}
             <div className="flex-1">
-              <h3 className="text-[#FFA52F] text-[24px] font-semibold mb-6">
+              <h3 className="text-[#FFA52F] text-[24px] font-semibold mb-4 md:mb-6">
                 Follow us
               </h3>
               <div className="flex items-center gap-6">
@@ -187,13 +183,13 @@ const Footer = () => {
             alt="Kicks Logo"
             width={1262}
             height={314}
-            className="w-full object-cover opacity-90"
+            className="w-full object-cover opacity-90 mt-1"
           />
         </div>
       </div>
 
       <div className="container mx-auto px-4 py-8 text-center">
-        <p className="text-[#232321] text-sm xl:text-base font-semibold opacity-60">
+        <p className="text-[#232321] text-sm xl:text-base">
           © All rights reserved
         </p>
       </div>

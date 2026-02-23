@@ -58,7 +58,7 @@ const Reviews = () => {
         </motion.div>
 
         {/* Review Cards Grid */}
-        <div className="grid grid-cols-1 lg:grid-cols-3 gap-4">
+        <div className="flex lg:grid lg:grid-cols-3 gap-4 overflow-x-auto lg:overflow-visible scrollbar-hide snap-x snap-mandatory pb-4 lg:pb-0">
           {reviews.map((review, index) => (
             <motion.div
               key={review.id}
@@ -70,6 +70,7 @@ const Reviews = () => {
                 delay: index * 0.1,
                 ease: [0.32, 0.72, 0, 1],
               }}
+              className="min-w-full sm:min-w-[400px] lg:min-w-full snap-center"
             >
               <ReviewCard review={review} />
             </motion.div>

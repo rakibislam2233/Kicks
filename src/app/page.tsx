@@ -12,7 +12,7 @@ const Home = async () => {
   ]);
 
   const categories = categoriesRes.data || [];
-  const products = productsRes.data || [];
+  const products = productsRes.data.sort((a, b) => b.id - a.id) || [];
   return (
     <main className="min-h-screen">
       <HeroSection />

@@ -55,7 +55,7 @@ const CartItem = ({ item }: CartItemProps) => {
   return (
     <div className="flex gap-3 sm:gap-4 xl:gap-6 py-5 sm:py-6 border-b border-[#ECEEF0] last:border-0">
       {/* Product Image */}
-      <div className="relative w-20 h-20 sm:w-[120px] sm:h-[120px] xl:w-[200px] xl:h-[200px] bg-[#ECEEF0] rounded-[16px] xl:rounded-[24px] overflow-hidden shrink-0">
+      <div className="relative w-[157px] h-[216px] xl:w-[207px] xl:h-[225px] bg-[#ECEEF0] rounded-[16px] xl:rounded-[24px] overflow-hidden shrink-0">
         <Image
           src={item.image}
           alt={item.name}

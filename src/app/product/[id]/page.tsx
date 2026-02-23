@@ -26,9 +26,9 @@ const ProductDetailsPage = async ({ params }: ProductDetailsPageProps) => {
   }
 
   // Recommendations: same category, excluding current product
-  const recommendations = allProducts
-    .filter((p) => p.category.id === product.category.id && p.id !== product.id)
-    .slice(0, 8);
+  const recommendations = allProducts?.filter(
+    (p) => p?.category?.id === product?.category?.id && p?.id !== product?.id,
+  );
 
   return (
     <main className="w-full min-h-screen py-5 xl:py-8">
@@ -37,7 +37,7 @@ const ProductDetailsPage = async ({ params }: ProductDetailsPageProps) => {
         <div className="flex flex-col xl:flex-row gap-8">
           {/* Left: Images */}
           <div className="w-full xl:w-[63%]">
-            <ProductImages images={product.images} />
+            <ProductImages images={product?.images} />
           </div>
 
           {/* Right: Info */}

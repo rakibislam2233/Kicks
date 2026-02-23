@@ -36,7 +36,7 @@ const ProductImages = ({ images = [] }: { images: string[] }) => {
     <div className="flex flex-col gap-4">
       {/* Mobile Slider View */}
       <div className="xl:hidden flex flex-col gap-4">
-        <div className="relative aspect-square bg-[#ECEEF0] rounded-[24px] overflow-hidden">
+        <div className="relative h-[273px] md:h-[510px] bg-[#ECEEF0] rounded-[16px] overflow-hidden">
           {productImages.length > 0 && (
             <Image
               src={productImages[activeImage]}
@@ -53,7 +53,7 @@ const ProductImages = ({ images = [] }: { images: string[] }) => {
                 key={i}
                 onClick={() => setActiveImage(i)}
                 className={`w-2 h-2 rounded-full transition-all cursor-pointer ${
-                  activeImage === i ? "bg-[#4A69E2] w-4" : "bg-black/20"
+                  activeImage === i ? "bg-[#4A69E2]" : "bg-black/20"
                 }`}
               />
             ))}

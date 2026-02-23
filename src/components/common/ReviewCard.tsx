@@ -20,10 +20,10 @@ const ReviewCard = ({ review }: { review: Review }) => {
       <div className="p-6 xl:p-8 flex flex-col gap-3">
         <div className="flex items-start justify-between gap-3">
           <div className="flex-1">
-            <h3 className="text-lg xl:text-2xl font-bold text-[#232321] mb-1">
+            <h3 className="text-[20px] xl:text-2xl font-bold text-[#232321] mb-1">
               {review.title}
             </h3>
-            <p className="text-sm xl:text-base text-[#232321] opacity-80 leading-snug">
+            <p className="text-sm xl:text-base text-[#232321] opacity-80">
               {review.review}
             </p>
           </div>

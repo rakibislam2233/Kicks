@@ -6,6 +6,7 @@ import { addToCart } from "@/redux/features/cartSlice";
 import { useAppDispatch } from "@/redux/store";
 import { Heart } from "lucide-react";
 import { useState } from "react";
+import { toast } from "sonner";
 
 const ProductInformation = ({ product }: { product: IProduct }) => {
   const dispatch = useAppDispatch();
@@ -27,8 +28,9 @@ const ProductInformation = ({ product }: { product: IProduct }) => {
         color: selectedColor,
       }),
     );
-    // Optional: Add some feedback like a toast or simple message
-    alert("Added to cart!");
+    toast.success("Product added to cart!", {
+      description: `${product.title} has been added to your bag.`,
+    });
   };
 
   return (
@@ -36,13 +38,13 @@ const ProductInformation = ({ product }: { product: IProduct }) => {
       {/* Badge & Title */}
       <div className="space-y-4">
         <button className="h-[38px] px-4 bg-primary text-white text-[10px] xl:text-xs font-semibold rounded-[12px] uppercase">
-          {product.category.name}
+          {product?.category?.name}
         </button>
         <h1 className="text-2xl xl:text-[32px] font-bold text-[#232321] leading-tight uppercase">
-          {product.title}
+          {product?.title}
         </h1>
         <p className="text-xl xl:text-2xl font-bold text-primary">
-          ${product.price.toFixed(2)}
+          ${product?.price?.toFixed(2)}
         </p>
       </div>
 
@@ -56,17 +58,13 @@ const ProductInformation = ({ product }: { product: IProduct }) => {
             <button
               onClick={() => setSelectedColor("navy")}
               className={`size-8 rounded-full ${
-                selectedColor === "navy" ? "bg-[#232321] " : "bg-transparent"
+                selectedColor === "navy" ? "bg-[#253043] " : "bg-transparent"
               }`}
             />
           </div>
           <button
             onClick={() => setSelectedColor("green")}
-            className={`w-8 h-8 rounded-full bg-[#707E6E] border-2 transition-all cursor-pointer ${
-              selectedColor === "green"
-                ? "border-primary scale-110"
-                : "border-transparent"
-            }`}
+            className={`w-8 h-8 rounded-full bg-[#707E6E] transition-all cursor-pointer`}
           />
         </div>
       </div>
@@ -121,8 +119,22 @@ const ProductInformation = ({ product }: { product: IProduct }) => {
         <p className="text-sm xl:text-base font-semibold text-[#232321] uppercase">
           About the product
         </p>
-        <div className="space-y-2 text-sm xl:text-base text-[#232321]/80 leading-relaxed">
-          <p className="line-clamp-4">{product.description}</p>
+        <div className="space-y-3 text-sm xl:text-base text-[#232321] leading-relaxed">
+          <p> Shadow Navy / Army Green </p>
+          <p>
+            This product is excluded from all promotional <br /> discounts and
+            offers.
+          </p>
+          <ul className="list-disc pl-8">
+            <li>
+              Pay over time in interest-free installments with Affirm, Klarna or
+              Afterpay.
+            </li>
+            <li>
+              Join adiClub to get unlimited free standard shipping, returns, &
+              exchanges.
+            </li>
+          </ul>
         </div>
       </div>
     </div>

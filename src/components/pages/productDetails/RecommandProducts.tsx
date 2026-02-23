@@ -54,7 +54,6 @@ const RecommandProducts = ({ products }: RecommandProductsProps) => {
     }
   };
 
-  // Current page এর products
   const currentProducts = (products || []).slice(
     currentPage * itemsPerPage,
     (currentPage + 1) * itemsPerPage,
@@ -62,6 +61,7 @@ const RecommandProducts = ({ products }: RecommandProductsProps) => {
 
   if (!products || products.length === 0) return null;
 
+  console.log("products", products);
   return (
     <section className="w-full pt-12 xl:pt-[128px] pb-12 xl:pb-16">
       <div className="flex items-center justify-between mb-8">
@@ -117,8 +117,8 @@ const RecommandProducts = ({ products }: RecommandProductsProps) => {
           <button
             key={i}
             onClick={() => setCurrentPage(i)}
-            className={`h-[4px] rounded-full transition-all duration-300 ${
-              currentPage === i ? "bg-[#4A69E2] w-8" : "bg-[#232321]/10 w-4"
+            className={`h-[6px] rounded-[8px] transition-all duration-300 ${
+              currentPage === i ? "bg-[#4A69E2] w-10" : "bg-[#B6B6B2] w-10"
             }`}
           />
         ))}

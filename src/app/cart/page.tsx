@@ -3,25 +3,25 @@ import OrderSummary from "@/components/pages/cart/OrderSummary";
 
 const CartPage = () => {
   return (
-    <main className="min-h-screen pb-20 pt-8 xl:pt-16">
-      <div className="container mx-auto px-4">
+    <main className="w-full h-full">
+      <div className="container mx-auto px-4 md:px-8">
         {/* Announcement Section */}
-        <div className="mb-8 xl:mb-12">
-          <h1 className="text-2xl xl:text-[48px] font-bold text-[#232321] uppercase leading-tight">
+        <div className="py-6 xl:py-8">
+          <h1 className="text-2xl xl:text-[32px] font-semibold text-[#232321]">
             Saving to celebrate
           </h1>
-          <p className="text-sm xl:text-[20px] font-semibold text-[#232321]/80 mt-2">
+          <p className="text-[12px] md:text-sm font-semibold text-[#232321]/80 mt-2">
             Enjoy up to 60% off thousands of styles during the End of Year sale
             - while supplies last. No code needed.
           </p>
           <div className="flex gap-2 mt-2">
-            <button className="text-sm xl:text-[20px] font-bold text-[#232321] underline cursor-pointer">
+            <button className="text-sm xl:text-base font-bold text-[#232321]/80 underline cursor-pointer">
               Join us
             </button>
-            <span className="text-sm xl:text-[20px] font-semibold text-[#232321]">
+            <span className="text-sm xl:text-base font-semibold text-[#232321]/80">
               or
             </span>
-            <button className="text-sm xl:text-[20px] font-bold text-[#232321] underline cursor-pointer">
+            <button className="text-sm xl:text-base font-bold text-[#232321]/80 underline cursor-pointer">
               Sign-in
             </button>
           </div>

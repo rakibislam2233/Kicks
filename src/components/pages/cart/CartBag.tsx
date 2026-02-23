@@ -6,12 +6,12 @@ const CartBag = () => {
   const cartItems = useAppSelector((state) => state.cart.items);
 
   return (
-    <div className="w-full bg-white rounded-[24px] xl:rounded-[32px] p-6 xl:p-8">
+    <div className="w-full bg-white rounded-[16px] p-4 md:p-6">
       <div className="mb-6 xl:mb-8">
-        <h2 className="text-2xl xl:text-[32px] font-bold text-[#232321] uppercase">
+        <h2 className="text-[20px] md:text-[32px] font-semibold text-[#232321]">
           Your Bag
         </h2>
-        <p className="text-sm xl:text-[16px] font-semibold text-[#232321]/60 mt-2">
+        <p className="text-sm xl:text-[16px]  text-[#232321]/80 mt-2">
           Items in your bag not reserved- check out now to make them yours.
         </p>
       </div>
