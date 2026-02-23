@@ -24,12 +24,12 @@ const NavActions = ({ isMobile }: NavActionsProps) => {
 
       {/* User Profile Icon - Visible on all devices now */}
       <button className="flex cursor-pointer text-[#232321] transition-transform">
-        <HiUser className="size-6 md:size-8" />
+        <HiUser className="size-6 md:size-7" />
       </button>
 
       {/* Cart Icon - Visible on all devices */}
       <Link href="/cart">
-        <button className="relative flex size-8 md:size-10 items-center justify-center rounded-full bg-[#FFA52F] text-[12px] md:text-[14px] font-bold text-[#232321] transition-transform p-2 md:p-3 cursor-pointer">
+        <button className="relative flex size-8 items-center justify-center rounded-full bg-[#FFA52F] text-[12px] md:text-[16px] font-semibold text-[#232321] transition-transform p-2 md:p-[10px] cursor-pointer">
           {totalQuantity}
         </button>
       </Link>
