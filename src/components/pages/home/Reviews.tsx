@@ -49,10 +49,10 @@ const Reviews = () => {
           transition={{ duration: 0.6 }}
           className="flex items-center justify-between mb-8 xl:mb-12"
         >
-          <h2 className="text-2xl sm:text-4xl xl:text-[74px] font-semibold leading-tight xl:leading-[0.9] text-[#232321] uppercase">
-            REVIEWS
+          <h2 className="text-2xl sm:text-4xl xl:text-[74px] font-semibold leading-tight xl:leading-[0.9] text-[#232321]">
+            Reviews
           </h2>
-          <Button className="h-[36px] xl:h-[48px] bg-primary text-white font-medium uppercase rounded-[8px] px-6 text-[10px] xl:text-sm cursor-pointer tracking-wider hover:bg-primary/90 transition-colors">
+          <Button className="w-[89px] md:w-[121px] h-[40px] md:h-[48px] bg-primary text-white font-medium uppercase rounded-[8px] px-6 text-sm cursor-pointer tracking-wider hover:bg-primary/90 transition-colors">
             SEE ALL
           </Button>
         </motion.div>

@@ -95,7 +95,7 @@ const Categories = ({ categories }: CategoriesProps) => {
               {visibleCategories.map((category) => (
                 <div
                   key={category.id}
-                  className={`w-full relative odd:bg-[#ECEEF0] even:bg-[#F6F6F6] odd:rounded-tl-[24px] xl:odd:rounded-tl-[64px] p-6 xl:p-[64px] overflow-hidden h-[280px] md:h-[600px] cursor-pointer group`}
+                  className={`w-full  relative odd:bg-[#ECEEF0] even:bg-[#F6F6F6] odd:rounded-tl-[24px] xl:odd:rounded-tl-[64px] p-6 xl:p-[64px] overflow-hidden h-[348px] md:h-[600px] cursor-pointer group`}
                 >
                   {/* Shoe Image */}
                   <motion.div

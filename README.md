@@ -8,8 +8,7 @@
 
 ## 🚀 Live Demo
 
-**Experience the store live here:** [Insert Your Deployment Link Here]  
-_(e.g., https://kicks-store.vercel.app)_
+**Experience the store live here:** [https://kicks-eight-sandy.vercel.app](https://kicks-eight-sandy.vercel.app)  
 
 ---
 
